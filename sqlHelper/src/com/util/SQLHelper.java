@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.model.employee;
+import com.model.Employee;
 
 public class SQLHelper {
 	
@@ -24,17 +24,17 @@ public class SQLHelper {
 	static String driver = "";
 	static Properties pro = null;
 	static InputStream file = null;
-	
+
 	static{
 		try {
 			pro = new Properties();
-			SQLHelper.class.getClassLoader().getResourceAsStream("db.properties");
+			file = SQLHelper.class.getClassLoader().getResourceAsStream("db.properties");
 			pro.load(file); 
 			url = pro.getProperty("url");
 			user = pro.getProperty("user");
 			password = pro.getProperty("password");
 			driver = pro.getProperty("driver");
-			Class.forName(driver);
+			Class.forName(driver); 
 			} catch (Exception e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -77,12 +77,12 @@ public class SQLHelper {
 		
 		try {
 			ct = getConnection();
-			ps = ct.prepareStatement("sql");
+			ps = ct.prepareStatement(sql);
 			if(parameters!=null) {
 				for(int i = 0;i<parameters.length;i++) {
 					ps.setString(i+1,parameters[i]);
 				}
-			}
+			} 
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
@@ -96,7 +96,7 @@ public class SQLHelper {
 		
 		try {
 			ct = getConnection();
-			ps = ct.prepareStatement("sql");
+			ps = ct.prepareStatement(sql);
 			if(parameters!=null) {
 				for(int i = 0;i<parameters.length;i++) {
 					ps.setString(i+1,parameters[i]);
@@ -111,11 +111,11 @@ public class SQLHelper {
 	}
 	
 	//函数的二次封装，避免调用者手动关闭结果集合，根据业务逻辑的需要，model
-	public static ArrayList<employee> executeQueryEmployees(String sql,String[]parameters){
-		ArrayList<employee> allemployee = new ArrayList<employee>();
+	public static ArrayList<Employee> executeQueryEmployees(String sql,String[]parameters){
+		ArrayList<Employee> allemployee = new ArrayList<Employee>();
 		try {
 			ct = getConnection();
-			ps = ct.prepareStatement("sql");
+			ps = ct.prepareStatement(sql);
 			if(parameters!=null) {
 				for(int i = 0;i<parameters.length;i++) {
 					ps.setString(i+1, parameters[i]);
@@ -123,18 +123,18 @@ public class SQLHelper {
 			}
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				employee e = new employee();
-				e.setId(rs.getInt(1));
-				e.setEmp_id(rs.getInt(2));
-				e.setEmp_name(rs.getString(3));
-				e.setEmp_gender(rs.getString(4));
-				e.setEmp_password(rs.getInt(5));
-				e.setEmmp_grade(rs.getInt(6));
-				e.setEmp_email(rs.getString(7));
-				e.setEmp_department_id(rs.getInt(8));
-				allemployee.add(e);
+				Employee emp = new Employee();
+				emp.setId(rs.getInt(1));
+				emp.setEmp_id(rs.getInt(2));
+				emp.setEmp_name(rs.getString(3));
+				emp.setEmp_gender(rs.getString(4));
+				emp.setEmp_password(rs.getInt(5));
+				emp.setEmmp_grade(rs.getInt(6));
+				emp.setEmp_email(rs.getString(7));
+				emp.setEmp_department_id(rs.getInt(8));
+				allemployee.add(emp);
 			}
-				
+				 
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();	

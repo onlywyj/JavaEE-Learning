@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
-import com.model.employee;
+import com.model.Employee;
 import com.util.SQLHelper;
 
 public class Demo {
@@ -15,13 +15,13 @@ public class Demo {
 		
 		String sql = "select * from employee";
 		String [] parameters = {};
-		ArrayList<employee> allemp = SQLHelper.executeQueryEmployees(sql, parameters);
-		Iterator<employee> it = allemp.iterator();
+		ArrayList<Employee> allemp = SQLHelper.executeQueryEmployees(sql, parameters);
+		Iterator<Employee> it = allemp.iterator();
 		while(it.hasNext()) {
-			employee e = it.next();
+			Employee e = it.next();
 			System.out.println(e.getId()+" "+e.getEmp_id()+" "+e.getEmp_name()+" "+
 								e.getEmp_gender()+" "+e.getEmp_password()+" "+e.getEmmp_grade()+" "+
 								e.getEmp_email()+" "+e.getEmp_department_id());
-		}  
+		}   
 	}
 }

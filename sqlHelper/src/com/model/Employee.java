@@ -1,6 +1,6 @@
 package com.model;
 
-public class employee {
+public class Employee {
 	
 	private Integer id;
 	private Integer emp_id;
@@ -10,6 +10,8 @@ public class employee {
 	private Integer emmp_grade;
 	private String emp_email;
 	private Integer emp_department_id;
+	
+	
 	public Integer getId() {
 		return id;
 	}

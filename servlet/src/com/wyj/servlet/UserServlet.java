@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class UserServlet extends HttpServlet {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -22,7 +27,7 @@ public class UserServlet extends HttpServlet {
 		//两种方法
 		
 		String username = request.getParameter("username");
-		String password = request.getParameter("passwoord");
+		String password = request.getParameter("password");
 		
 		System.out.println(username+" "+password);
 	}

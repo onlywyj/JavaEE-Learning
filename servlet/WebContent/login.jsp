@@ -9,7 +9,7 @@
 <form action="UserServlet" method="post">
 	
 	<input type="text" name="username"/><br/>
-	<input typr="password" name="password"/><br/>
+	<input type="password" name="password"/><br/>
 	<input type="submit" value="登录"/>
 	<input type="reset" value="重置"/>
 	

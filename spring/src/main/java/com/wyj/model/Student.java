@@ -23,4 +23,11 @@ public class Student {
 	}
 	
 	
+	public Student(String name, String gender) {
+		super();
+		this.name = name;
+		this.gender = gender;
+	}
+	
+	
 }

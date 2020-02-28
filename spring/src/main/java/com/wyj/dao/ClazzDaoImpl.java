@@ -3,8 +3,12 @@ package com.wyj.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.wyj.model.Clazz;
 import com.wyj.model.Student;
+
+@Repository(value="clazzDao")
 
 public class ClazzDaoImpl implements ClazzDao {
 
@@ -28,10 +32,10 @@ public class ClazzDaoImpl implements ClazzDao {
 		clazz2 = new Clazz();
 		clazz2.setClazzNo(1002);
 		clazz2.setClazzname("网络工程应用");
-		clazz2.setInstructor("张老师");
+		clazz2.setInstructor("李老师");
 		clazz2.setCountNum(43);
-		Student s3 = new Student("网络工程学生1","男");
-		Student s4 = new Student("网络工程学生2","女");
+		Student s3 = new Student("网络工程学生3","男");
+		Student s4 = new Student("网络工程学生4","女");
 		list2 = new ArrayList<Student>();
 		list2.add(s3);
 		list2.add(s4);
@@ -58,8 +62,8 @@ public class ClazzDaoImpl implements ClazzDao {
 		createDB();
 		if(clazzname.equals(clazz1.getClazzname())) {
 			return (ArrayList<Student>) clazz1.getList();
-		}else if(clazzname.equals(clazz1.getClazzname())) {
-			return (ArrayList<Student>) clazz1.getList();
+		}else if(clazzname.equals(clazz2.getClazzname())) {
+			return (ArrayList<Student>) clazz2.getList();
 		}
 
 		return null;

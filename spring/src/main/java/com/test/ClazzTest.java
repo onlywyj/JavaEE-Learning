@@ -17,11 +17,11 @@ public class ClazzTest {
 		
 		ClazzService clazzService = (ClazzService) ac.getBean("clazzService");
 	
-		String clazzInformation = clazzService.getClazzById(1001);
+		String clazzInformation = clazzService.getClazzById(1002);
 		
 		System.out.println(clazzInformation);
 		
-		ArrayList<Student> list = clazzService.getAllStudentByClazzName("软件工程");
+		ArrayList<Student> list = clazzService.getAllStudentByClazzName("网络工程应用");
 		
 		Iterator<Student> it =list.iterator();
 		

@@ -6,7 +6,7 @@ import com.wyj.model.User;
 
 public interface UserService {
 
-	//校验登录信息
+		//校验登录信息
 		public boolean checkUser(User user);
 		//获取全体用户的信息
 		public ArrayList<User> getAllUser();

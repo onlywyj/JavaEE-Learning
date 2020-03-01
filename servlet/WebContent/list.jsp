@@ -7,18 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="UserServlet" method="post">
-	
-	<input type="text" name="username"/><br/>
-	<input type="password" name="password"/><br/>
-	<input type="submit" value="登录"/>
-	<input type="reset" value="重置"/>
-	
-</form>
-<hr/>
-<c:if test="${message}!=null">
-	<c:out value="${message}"/>
-</c:if>
+
+<h1>欢迎<font color="red">${username}</font>登录</h1>
+<table border=1 cellspacing=0>
+		<tr><th>id</th><th>用户名</th><th>密码</th><th>等级</th><th>邮箱</th></tr>
+	<c:forEach items="${allUser}" var="user">
+	<tr>
+		<td>${user.id}</td>
+		<td>${user.username}</td>
+		<td>${user.password}</td>
+		<td>${user.grade}</td>
+		<td>${user.email}</td>
+	</tr>
+	</c:forEach>
+</table>
 
 </body>
 </html>

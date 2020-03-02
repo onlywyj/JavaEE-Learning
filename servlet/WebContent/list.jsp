@@ -5,12 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function del(){
+		return window.confirm("真的要删除该用户吗？");
+	}
+	
+</script>
+
 </head>
 <body>
 
 <h1>欢迎<font color="red">${username}</font>登录</h1>
 <table border=1 cellspacing=0>
-		<tr><th>id</th><th>用户名</th><th>密码</th><th>等级</th><th>邮箱</th></tr>
+		<tr><th>id</th><th>用户名</th><th>密码</th><th>等级</th><th>邮箱</th><th>操作</th></tr>
 	<c:forEach items="${allUser}" var="user">
 	<tr>
 		<td>${user.id}</td>
@@ -18,9 +25,10 @@
 		<td>${user.password}</td>
 		<td>${user.grade}</td>
 		<td>${user.email}</td>
+		<td><a onclick="return del()" href="UserServlet?type=delete&id=${user.id}">删除</a>&nbsp;&nbsp;<a href="#">编辑</a></td>
 	</tr>
 	</c:forEach>
 </table>
-
+  
 </body>
 </html>

@@ -32,4 +32,18 @@ public class UserDaoImpl implements UserDao {
 		return allUser;
 	}
 
+	@Override
+	public boolean deleteUser(Integer id) {
+		boolean b = false;
+		String sql = "delete from tuserlogin where id=?";
+		String [] parameters= {String.valueOf(id)}; //将整形转换为字符串类型
+		try {
+			SQLHelper.executeUpdate(sql, parameters);
+			b = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return b;
+	}
 }

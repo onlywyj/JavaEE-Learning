@@ -12,5 +12,5 @@ public interface UserService {
 		public ArrayList<User> getAllUser();
 		//根据ID值获得单个用户的信息
 		//根据ID值，删除单个用户的信息
-	
+		public boolean deleteUser(Integer id);
 }

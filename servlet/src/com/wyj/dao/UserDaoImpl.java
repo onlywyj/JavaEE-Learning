@@ -34,6 +34,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean addUser(User user) {
+		
 		boolean b = false;
         String sql = "insert into tuserlogin(username,password,grade,email) values(?,?,?,?)";
         String []parameters = {user.getUsername(),user.getPassword(),String.valueOf(user.getGrade()),user.getEmail()};
@@ -48,6 +49,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean deleteUser(User user) {
+		
 		boolean b = false;
 		String sql = "delete from tuserlogin where id=?";
 		String [] parameters= {user.getId().toString()}; //将整形转换为字符串类型
@@ -61,4 +63,27 @@ public class UserDaoImpl implements UserDao {
 		return b;
 	}
 	
+	@Override
+	public boolean modifyUser(User user) {
+		
+		boolean b = false;
+        String sql = "update tuserlogin set username=? , password=? , grade=? , email=? where id=?";
+        String []parameters = {user.getUsername(),user.getPassword(),String.valueOf(user.getGrade()),user.getEmail(),user.getId().toString()};
+        try {
+            SQLHelper.executeUpdate(sql, parameters);
+            b = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+	
+	@Override
+	public User findUserById(String id) {
+		
+        String sql ="select *from tuserlogin where id=?";
+        String []parameters = {id};
+        User user = SQLHelper.executeQueryUser(sql, parameters).get(0);
+        return user;
+	}
 }

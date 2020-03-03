@@ -68,6 +68,7 @@ public class UserServlet extends HttpServlet {
 
 			  }
 		  }
+		
 		if("add".equals(type)) {
 			
 			String username_add = request.getParameter("username");
@@ -118,7 +119,50 @@ public class UserServlet extends HttpServlet {
 					request.getRequestDispatcher("list.jsp").forward(request, response);			
 			
 		         }
-			}
+			}else if("userModify".equals(type)) {
+				
+				String id = request.getParameter("id");
 
+	            User user = userService.findUserById(id);
+
+	            request.setAttribute("user", user);
+
+	            request.getRequestDispatcher("userModify.jsp").forward(request, response);
+
+	        }else if("modify".equals(type)) {
+
+	            String id = request.getParameter("id");
+
+	            String username_mod = request.getParameter("username");
+
+	            String password_mod = request.getParameter("password");
+
+	            String grade_mod = request.getParameter("grade");
+
+	            String email_mod = request.getParameter("email");
+
+	            User user = new User();
+
+	            user.setId(Integer.parseInt(id));
+
+	            user.setUsername(username_mod);
+
+	            user.setPassword(password_mod);
+
+	            user.setGrade(Integer.parseInt(grade_mod));
+
+	            user.setEmail(email_mod);
+
+	            userService.modifyUser(user);          
+
+				ArrayList<User> allUser = userService.getAllUser();
+				
+				request.setAttribute("allUser", allUser);
+				
+				request.getSession().setAttribute("user", user);
+
+	            request.getRequestDispatcher("list.jsp").forward(request, response);
+				
+			}
 	}
 }

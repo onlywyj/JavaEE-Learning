@@ -24,7 +24,7 @@
             <h1 style="text-align:center">用户信息管理系统</h1>          
         </div>
         <div class="col-md-2col-md-offset-10" >           
-          <h4>欢迎您，xxx&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">安全退出</a></h4>
+          <h4>欢迎您，<font color="red">${username}</font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">安全退出</a></h4>
         </div>
     </div>
             <div class="row">

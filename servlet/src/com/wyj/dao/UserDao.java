@@ -16,9 +16,9 @@ public interface UserDao {
 	//根据ID值，删除单个用户的信息
 	public boolean deleteUser(User user);
 	//修改用户信息
-	//public boolean modifyUser(User user);
+	public boolean modifyUser(User user);
 	//按照用户ID值查询相关用户
-	//public User findUserById(Integer id);
+	public User findUserById(String id);
 	//按照Name的值查询用户
 	//public User findUserByName(String name);
 

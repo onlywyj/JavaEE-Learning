@@ -34,4 +34,16 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser(user);
 	}
 
+	public boolean modifyUser(User user) {
+		return userDao.modifyUser(user);
+	}
+
+	public User findUserById(String id) {
+		return userDao.findUserById(id);
+	}
+
+	
+
+	
+
 }

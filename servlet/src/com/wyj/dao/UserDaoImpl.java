@@ -33,10 +33,24 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUser(Integer id) {
+	public boolean addUser(User user) {
+		boolean b = false;
+        String sql = "insert into tuserlogin(username,password,grade,email) values(?,?,?,?)";
+        String []parameters = {user.getUsername(),user.getPassword(),String.valueOf(user.getGrade()),user.getEmail()};
+        try {
+            SQLHelper.executeUpdate(sql, parameters);
+            b = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return b; 
+	}
+	
+	@Override
+	public boolean deleteUser(User user) {
 		boolean b = false;
 		String sql = "delete from tuserlogin where id=?";
-		String [] parameters= {String.valueOf(id)}; //将整形转换为字符串类型
+		String [] parameters= {user.getId().toString()}; //将整形转换为字符串类型
 		try {
 			SQLHelper.executeUpdate(sql, parameters);
 			b = true;
@@ -46,4 +60,5 @@ public class UserDaoImpl implements UserDao {
 		
 		return b;
 	}
+	
 }

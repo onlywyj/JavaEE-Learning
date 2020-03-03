@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wyj.model.PageBean;
 import com.wyj.model.User;
 import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
@@ -44,11 +45,15 @@ public class UserServlet extends HttpServlet {
 		if("login".equals(type)) {
 			
 			User user = new User();
+			
 			user.setUsername(username);
+			
 			user.setPassword(password);
+			
 			if(userService.checkUser(user)) {
 				//取值，取出全体用户的信息，放置在attitude域
 				ArrayList<User> allUser = userService.getAllUser();
+				
 				request.setAttribute("allUser", allUser);
 				//把正确的登录用户名放入session中 30min
 				request.getSession().setAttribute("username", username);
@@ -61,22 +66,59 @@ public class UserServlet extends HttpServlet {
 				//重新跳转至login.jsp
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
-			}
-		}else if("delete".equals(type)) {
-			String id = request.getParameter("id");
-			//将字符串转为整形
-			if(userService.deleteUser(Integer.parseInt(id))) {
-				//再一次向数据库发出请求，读取全体用户的信息。
-				//取值，取出全体用户的信息，放置在attitude域
-				ArrayList<User> allUser = userService.getAllUser();
-				request.setAttribute("allUser", allUser);
-				//页面跳转至正确的新的页面
-				request.getRequestDispatcher("list.jsp").forward(request, response);
-				
-			}
+			  }
+		  }
+		if("add".equals(type)) {
 			
-		}
-	}
+			String username_add = request.getParameter("username");
 
-	
+            String password_add = request.getParameter("password");
+
+            String grade_add = request.getParameter("grade");
+
+            String email_add = request.getParameter("email");
+
+            User user = new User();
+
+            user.setUsername(username_add);
+
+            user.setPassword(password_add);
+
+            user.setGrade(Integer.parseInt(grade_add));
+
+            user.setEmail(email_add);
+
+            userService.addUser(user);
+            
+			ArrayList<User> allUser = userService.getAllUser();
+			
+			request.setAttribute("allUser", allUser);
+			
+			request.getSession().setAttribute("user", user);
+
+            request.getRequestDispatcher("list.jsp").forward(request, response);							
+			
+		  }else if("delete".equals(type)) {
+
+				String id = request.getParameter("id");
+				
+				User user = new User();
+				
+				user.setId(Integer.parseInt(id));
+				//将字符串转为整形
+				if(userService.deleteUser(user)) {
+					//再一次向数据库发出请求，读取全体用户的信息。
+					//取值，取出全体用户的信息，放置在attitude域
+					ArrayList<User> allUser = userService.getAllUser();
+					
+					request.setAttribute("allUser", allUser);
+					
+					request.getSession().setAttribute("user", user);
+					//页面跳转至正确的新的页面
+					request.getRequestDispatcher("list.jsp").forward(request, response);			
+			
+		         }
+			}
+
+	}
 }

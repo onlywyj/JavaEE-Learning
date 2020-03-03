@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.wyj.model.Clazz;
 import com.wyj.model.Student;
 import com.wyj.service.ClazzService;
 
@@ -40,4 +42,10 @@ public class AppTest {
 		}
 	}
 
+	@Test
+	public void run2() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		Clazz c = (Clazz) ac.getBean("clazz");
+		System.out.println(c.getClazzNo()+" "+c.getClazzname()+" "+c.getInstructor()+" "+c.getCountNum());
+	}
 }

@@ -6,10 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增用户</title
 
-<!-- 引入bootstrap-3.3.7 本地方式-->  
+	<!-- 引入bootstrap-3.3.7 本地方式-->  
     <link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
-    <script src="bootstrap_plugins/js/jquery-1.11.3.min.js"></script>
-    <script src="bootstrap_plugins/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
 
     <style >
@@ -27,9 +26,10 @@
 	    <div class="row">
 	        <div class="col-md-12" style="background:#4072B1;color:white">
 	            <h1 style="text-align:center">用户信息管理系统</h1>          
-	        </div>
+	        </div> 
 	        <div class="col-md-2 col-md-offset-10" >           
-	          <h4>欢迎您，<font color="red">${username}</font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">安全退出</a></h4>
+	        	<h3>欢迎您，<font color="red">${username}</font></h3>
+	        	<h3><a href="#">安全退出</a></h3>
 	        </div>
 	    </div>
 	            <div class="row">
@@ -73,5 +73,13 @@
 			</div>
 		</div>
 	</div>
+	
+
+			<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		    <script src="bootstrap_plugins/js/jquery-1.11.3.min.js"></script>
+		    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    		<script src="bootstrap_plugins/js/bootstrap.min.js"></script>
+    		
+ 
 </body>
 </html>

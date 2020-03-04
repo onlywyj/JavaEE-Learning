@@ -5,9 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- 引入bootstrap核心 CSS文件  本地方式-->
+	<!-- 引入bootstrap核心 CSS文件  本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    
 <script type="text/javascript">
 	function del(){
 		return window.confirm("真的要删除该用户吗？");
@@ -19,12 +20,14 @@
 
 <body>
 
-<h1>欢迎<font color="red">${username}</font>登录</h1>
-<button type="button" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
-
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
+			<div class="col-md-2 col-md-offset-10" >           
+	        	<h3>欢迎您，<font color="red">${username}</font></h3>
+	        	<h3><a href="#">安全退出</a></h3>
+	        </div>
+			<button type="add" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
 			<table class="table table-bordered">
 				<thead>
 					<tr>

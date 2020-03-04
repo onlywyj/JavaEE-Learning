@@ -6,10 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<!-- 引入bootstrap 本地方式-->
+	<!-- 引入bootstrap 本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
-    <script src="bootstrap_plugins/js/jquery-1.11.3.min.js"></script>
-    <script src="bootstrap_plugins/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -54,5 +52,13 @@
 	</div>
 </div>
 </form>
+
+
+			<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		    <script src="bootstrap_plugins/js/jquery-1.11.3.min.js"></script>
+		    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    		<script src="bootstrap_plugins/js/bootstrap.min.js"></script>
+    		
+
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录界面</title>
 
-<!-- 引入bootstrap核心 CSS文件  本地方式-->
+	<!-- 引入bootstrap核心 CSS文件  本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 	<%-- CDN方式
@@ -17,16 +17,6 @@
     <link rel="stylesheet" href="css/style.css">
     --%>
     
-    <style>
-            #mybody{
-                /*border: solid1px grey;*/
-                width:980px;
-                height:500px;             
-                margin-top:50px;           
-            } 
-        </style>
-
-    
 </head>
 <body>
 
@@ -34,7 +24,7 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">登录</h3>
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" action="UserServlet?type=login" method="post" role="form">
 				<div class="form-group">
 					 <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
 					<div class="col-sm-10">

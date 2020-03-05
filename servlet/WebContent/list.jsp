@@ -11,12 +11,12 @@
     
 <script type="text/javascript">
 	function del(){
-		return window.confirm("真的要删除该用户吗？");
+		return window.confirm("真的要删除该用户吗？此操作不可恢复!");
 	}
 	//全选和批量删除
     function select_all(){
-        var myselect = document.getElementsByName("myselect");
-        var mycheck = document.getElementById("all");
+    	var mycheck = document.getElementById("all");
+		var myselect = document.getElementsByName("myselect");
         if(mycheck.checked == false){
             for(var i = 0;i<myselect.length;i++){
                 myselect[i].checked = false;
@@ -27,6 +27,35 @@
             }
         }
     }  
+	
+	function deleteBySelected(){
+		var deleteId = [];
+        var names = document.getElementsByName("myselect");            
+        var flag = false ;//标记判断是否选中一个                 
+        for(var i=0;i<names.length;i++){  
+            if(names[i].checked){ 
+            	alert("真的要删除该用户吗？此操作不可恢复!");         	
+                    flag = true ;  
+                    break ;  
+             }  
+         }
+        if(flag){
+        	for(var i=0;i<names.length;i++){
+        		if(names[i].checked){
+        			
+        			deleteId.push(names[i].value);
+        			
+        		}
+        		
+        	}       		      	
+        	window.location.href="UserServlet?type=delBySelected&myselect="+deleteId;
+        }else if(!flag){  
+            alert("请最少选择一项！");  
+            return false ;  
+         }		
+	}
+	
+	/*
 	$(function(){
         $("#btn_del").click(function(){
             var statu = confirm("确认删除所有选中项！");
@@ -38,7 +67,8 @@
                     $("#doSubmit").click()
             }
             });
-        })		
+        })	
+        */
 </script>
 
 </head>
@@ -57,9 +87,10 @@
 		<h2 style="text-align:center">用户信息一览</h2>
 		<hr/>
 		
+	 	<form class="form-horizontal" action="UserServlet?type=delBySelected" method="post">
 		<div class="col-md-12 column">
 			<button type="button" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
-			<button type="button" id="btn_del" class="btn btn-warning" onclick="deleteBySelected()" >批量删除</button>
+			<button type="button" id="btn_del" class="btn btn-warning" onclick="deleteBySelected();" >批量删除</button>
 			<hr/>
 			<table class="table table-bordered">
 				<thead>
@@ -92,6 +123,7 @@
 			</table>
 			 <input type="submit" value="aaa" id="doSubmit" style="display:none"/>
 		</div>
+		</form>
 	</div>
 </div>
 

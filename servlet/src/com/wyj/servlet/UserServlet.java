@@ -52,7 +52,7 @@ public class UserServlet extends HttpServlet {
 			
 			if(userService.checkUser(user)) {
 				//取值，取出全体用户的信息，放置在attitude域
-				ArrayList<User> allUser = userService.getAllUser();
+				ArrayList<User> allUser = userService.getAllUsers();
 				
 				request.setAttribute("allUser", allUser);
 				//把正确的登录用户名放入session中 30min
@@ -62,7 +62,7 @@ public class UserServlet extends HttpServlet {
 				
 			}else {
 				//设置登录出错信息提示
-				request.setAttribute("message","错误的用户名和密码");
+				request.setAttribute("message","错误的用户名和密码！请重新输入！");
 				//重新跳转至login.jsp
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
@@ -91,7 +91,7 @@ public class UserServlet extends HttpServlet {
 
             userService.addUser(user);
             
-			ArrayList<User> allUser = userService.getAllUser();
+			ArrayList<User> allUser = userService.getAllUsers();
 			
 			request.setAttribute("allUser", allUser);
 			
@@ -110,7 +110,7 @@ public class UserServlet extends HttpServlet {
 				if(userService.deleteUser(user)) {
 					//再一次向数据库发出请求，读取全体用户的信息。
 					//取值，取出全体用户的信息，放置在attitude域
-					ArrayList<User> allUser = userService.getAllUser();
+					ArrayList<User> allUser = userService.getAllUsers();
 					
 					request.setAttribute("allUser", allUser);
 					
@@ -119,7 +119,33 @@ public class UserServlet extends HttpServlet {
 					request.getRequestDispatcher("list.jsp").forward(request, response);			
 			
 		         }
-			}else if("userModify".equals(type)) {
+			}else if("delBySelected".equals(type)) {
+
+	            String [] para = request.getParameterValues("myselect");       
+
+	            StringBuffer inParams = new StringBuffer();
+
+	            for(int i=0; i<para.length; i++){
+
+	                   inParams.append(para[i]);
+
+	                   inParams.append(",");
+
+	                }
+
+	            String para2 = inParams.substring(0, inParams.length()-1);	//去掉para2中的最后一个逗号
+
+	            userService.deleteUserBySelected(para2);
+	            
+				ArrayList<User> allUser = userService.getAllUsers();
+				
+				request.setAttribute("allUser", allUser);
+
+	            request.getSession().setAttribute("allUsers", userService.getAllUsers());
+
+	            request.getRequestDispatcher("list.jsp").forward(request, response);				
+		
+	        }else if("userModify".equals(type)) {
 				
 				String id = request.getParameter("id");
 
@@ -155,7 +181,7 @@ public class UserServlet extends HttpServlet {
 
 	            userService.modifyUser(user);          
 
-				ArrayList<User> allUser = userService.getAllUser();
+				ArrayList<User> allUser = userService.getAllUsers();
 				
 				request.setAttribute("allUser", allUser);
 				

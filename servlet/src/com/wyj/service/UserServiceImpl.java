@@ -17,9 +17,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.checkUser(user);
 	}
 
-	public ArrayList<User> getAllUser() {
+	public ArrayList<User> getAllUsers() {
 		
-		return userDao.getAllUser();
+		return userDao.getAllUsers();
 	}
 	
 	@Override
@@ -42,8 +42,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.findUserById(id);
 	}
 
-	
+	public boolean deleteUserBySelected(String para2) {
+		return userDao.deleteUserBySelected(para2);
+	}
 
 	
-
+	
 }

@@ -22,11 +22,10 @@
 	        <div class="col-md-2 col-md-offset-10" >           
 	        	<h3>欢迎您，<font color="red">${username}</font></h3>
 	        	<h3><a href="#">安全退出</a></h3>
-	        </div>
-	    </div>              
-	    <h2 style="text-align:center">新增用户信息</h2>             
-	    <hr/> 
-	                     
+	        </div>              
+		<h2 style="text-align:center">新增用户信息</h2>             
+		<hr/> 
+		                     
 	    <form class="form-horizontal" action="UserServlet?type=add" method="post">
 	        <div class="form-group">
 	            <label for="inputUserName" class="col-sm-2 control-label">姓名：</label>
@@ -60,7 +59,7 @@
 	    	</div>
 		</form>
 	</div>
-	
+</div>
 
 			<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 		    <script src="bootstrap_plugins/js/jquery-1.11.3.min.js"></script>

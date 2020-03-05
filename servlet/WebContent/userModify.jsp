@@ -57,9 +57,10 @@
 	        <button type="reset" class="btn btn-warning pull-center" name="reset">取消</button>
 	        </div>
 	    </div>
+	    </form>
 	</div>
 </div>
-</form>
+
 
 
 			<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

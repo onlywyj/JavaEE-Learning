@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public ArrayList<User> getAllUser() {
+	public ArrayList<User> getAllUsers() {
 		
 		String sql = "select * from tuserlogin";
 		String [] parameters= {};
@@ -64,6 +64,25 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
+	public boolean deleteUserBySelected(String para2) {
+		
+		boolean b = false;
+		String sql = "delete from tuserlogin where id in("+para2+")"; //不知道为啥需要加（"+para2+"）双引号，先记着
+		//String [] parameters= {para2};
+		try {
+			
+			SQLHelper.executeUpdate(sql, null);
+			//SQLHelper.executeUpdate(sql, parameters);
+				
+			b = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return b;
+	}
+	
+	@Override
 	public boolean modifyUser(User user) {
 		
 		boolean b = false;
@@ -86,4 +105,5 @@ public class UserDaoImpl implements UserDao {
         User user = SQLHelper.executeQueryUser(sql, parameters).get(0);
         return user;
 	}
+
 }

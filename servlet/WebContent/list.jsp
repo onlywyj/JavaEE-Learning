@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>数据展示</title>
 	<!-- 引入bootstrap核心 CSS文件  本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -13,7 +13,32 @@
 	function del(){
 		return window.confirm("真的要删除该用户吗？");
 	}
-		
+	//全选和批量删除
+    function select_all(){
+        var myselect = document.getElementsByName("myselect");
+        var mycheck = document.getElementById("all");
+        if(mycheck.checked == false){
+            for(var i = 0;i<myselect.length;i++){
+                myselect[i].checked = false;
+            }
+        }else{
+            for(var i = 0;i<myselect.length;i++){
+                myselect[i].checked = true;
+            }
+        }
+    }  
+	$(function(){
+        $("#btn_del").click(function(){
+            var statu = confirm("确认删除所有选中项！");
+          //如果点击的是取消
+            if(!statu){      
+            	return false;
+            	}	//返回页面      
+            else{//如果点击确定，继续执行下面的操作
+                    $("#doSubmit").click()
+            }
+            });
+        })		
 </script>
 
 </head>
@@ -22,32 +47,50 @@
 
 <div class="container">
 	<div class="row clearfix">
+		<div class="col-md-12" style="background:#4072B1;color:white">
+			<h1 style="text-align:center">用户信息管理系统</h1>          
+		</div> 
+		<div class="col-md-2 col-md-offset-10" >           
+			<h3>欢迎您，<font color="red">${username}</font></h3>
+			<h3><a href="#">安全退出</a></h3>
+		</div>
+		<h2 style="text-align:center">用户信息一览</h2>
+		<hr/>
+		
 		<div class="col-md-12 column">
-			<div class="col-md-2 col-md-offset-10" >           
-	        	<h3>欢迎您，<font color="red">${username}</font></h3>
-	        	<h3><a href="#">安全退出</a></h3>
-	        </div>
-			<button type="add" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
+			<button type="button" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
+			<button type="button" id="btn_del" class="btn btn-warning" onclick="deleteBySelected()" >批量删除</button>
+			<hr/>
 			<table class="table table-bordered">
 				<thead>
-					<tr>
-					<th>id</th><th>用户名</th><th>密码</th>
-					<th>等级</th><th>邮箱</th><th>操作</th>
+					<tr class="info">
+					<th><input type="checkbox" id="all" onclick="select_all()"/>全选</th>
+					<th>id</th><th>用户名</th><th>密码</th><th>等级</th><th>邮箱</th><th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${allUser}" var="user">
 					<tr>
+						<td><input type="checkbox" name="myselect" value="${user.id}"/></td>
 						<td>${user.id}</td>
 						<td>${user.username}</td>
 						<td>${user.password}</td>
 						<td>${user.grade}</td>
 						<td>${user.email}</td>
-						<td><a onclick="return del()" href="UserServlet?type=delete&id=${user.id}">删除</a>&nbsp;&nbsp;<a href="UserServlet?type=userModify&id=${user.id}">编辑</a></td>
+						<td>
+						<a href="UserServlet?type=delete&id=${user.id}">
+							<button type="button" class="btn btn-default btn-warning" onclick="return del()">删除</button>
+						</a>
+						<a href="UserServlet?type=userModify&id=${user.id}">
+							<button type="button" class="btn btn-default btn-info" >编辑</button>
+						</a>
+						</td>
+						<!--  <td><a onclick="return del()" href="UserServlet?type=delete&id=${user.id}">删除</a>&nbsp;&nbsp;<a href="UserServlet?type=userModify&id=${user.id}">编辑</a></td>-->
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			 <input type="submit" value="aaa" id="doSubmit" style="display:none"/>
 		</div>
 	</div>
 </div>

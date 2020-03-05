@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>用户修改</title>
 
 	<!-- 引入bootstrap 本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
@@ -13,10 +13,18 @@
 </head>
 <body>
 
-<h2 style="text-align:center">修改用户信息</h2>
-
-<div class="container-fluid">
-	<div class="row">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12" style="background:#4072B1;color:white">
+	            <h1 style="text-align:center">用户信息管理系统</h1>          
+	    </div> 
+	    <div class="col-md-2 col-md-offset-10" >           
+	        	<h3>欢迎您，<font color="red">${username}</font></h3>
+	        	<h3><a href="#">安全退出</a></h3>
+	    </div>
+	    <h2 style="text-align:center">修改用户信息</h2>
+	    <hr/>
+	    
 		<form class="form-horizontal" action="UserServlet?type=modify" method="post">
 	    <div class="form-group">
 			<input type="hidden" value=${user.id} name="id"/>

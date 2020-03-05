@@ -4,7 +4,7 @@
 <html>
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录界面</title>
+<title>登录</title>
 
 	<!-- 引入bootstrap核心 CSS文件  本地方式-->
 	<link href="bootstrap_plugins/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,8 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">登录</h3>
+			<hr/>
+			
 			<form class="form-horizontal" action="UserServlet?type=login" method="post" role="form">
 				<div class="form-group">
 					 <label for="inputUsername" class="col-sm-2 control-label">用户名</label>

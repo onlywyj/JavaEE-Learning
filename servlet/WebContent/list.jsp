@@ -55,20 +55,6 @@
          }		
 	}
 	
-	/*
-	$(function(){
-        $("#btn_del").click(function(){
-            var statu = confirm("确认删除所有选中项！");
-          //如果点击的是取消
-            if(!statu){      
-            	return false;
-            	}	//返回页面      
-            else{//如果点击确定，继续执行下面的操作
-                    $("#doSubmit").click()
-            }
-            });
-        })	
-        */
 </script>
 
 </head>
@@ -77,7 +63,7 @@
 
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12" style="background:#4072B1;color:white">
+		<div class="col-md-12" style="background:#1E90FF;color:white">
 			<h1 style="text-align:center">用户信息管理系统</h1>          
 		</div> 
 		<div class="col-md-2 col-md-offset-10" >           

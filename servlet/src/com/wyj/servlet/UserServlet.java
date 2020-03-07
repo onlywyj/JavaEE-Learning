@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wyj.model.PageBean;
 import com.wyj.model.User;
 import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
+import com.wyj.util.MD5;
 
 
 public class UserServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
 		
 		String type = request.getParameter("type");
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String password = MD5.getResult(request.getParameter("password"));
 		System.out.println(username+" "+password);
 
 		if("login".equals(type)) {
@@ -62,7 +62,7 @@ public class UserServlet extends HttpServlet {
 				
 			}else {
 				//设置登录出错信息提示
-				request.setAttribute("message","错误的用户名和密码！请重新输入！");
+				request.setAttribute("msg","错误的用户名和密码！请重新输入！");
 				//重新跳转至login.jsp
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
@@ -73,7 +73,7 @@ public class UserServlet extends HttpServlet {
 			
 			String username_add = request.getParameter("username");
 
-            String password_add = request.getParameter("password");
+            String password_add = MD5.getResult(request.getParameter("password"));
 
             String grade_add = request.getParameter("grade");
 
@@ -161,7 +161,7 @@ public class UserServlet extends HttpServlet {
 
 	            String username_mod = request.getParameter("username");
 
-	            String password_mod = request.getParameter("password");
+	            String password_mod = MD5.getResult(request.getParameter("password"));
 
 	            String grade_mod = request.getParameter("grade");
 

@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!-- 判断session，没有则需要登录 -->
+<% 
+    String name = (String)session.getAttribute("username");
+    if(name == null){
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,6 +24,7 @@
 </head>
 
 <body>
+
 	<div class="container">
 	    <div class="row clearfix">
 	        <div class="col-md-12" style="background:#1E90FF;color:white">

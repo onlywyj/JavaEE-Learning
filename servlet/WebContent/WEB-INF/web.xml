@@ -19,7 +19,6 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
- 
   <filter>
     <display-name>CharacterEncoding</display-name>
     <filter-name>CharacterEncoding</filter-name>
@@ -29,5 +28,5 @@
     <filter-name>CharacterEncoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-
+  
 </web-app>

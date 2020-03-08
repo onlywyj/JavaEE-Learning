@@ -3,17 +3,15 @@ package com.wyj.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.wyj.model.User;
 import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
 import com.wyj.util.MD5;
-
 
 public class UserServlet extends HttpServlet {
 
@@ -38,11 +36,14 @@ public class UserServlet extends HttpServlet {
 		//两种方法
 		
 		String type = request.getParameter("type");
-		String username = request.getParameter("username");
-		String password = MD5.getResult(request.getParameter("password"));
-		System.out.println(username+" "+password);
 
 		if("login".equals(type)) {
+			
+			String username = request.getParameter("username");
+			
+			String password = MD5.getResult(request.getParameter("password"));
+			
+			System.out.println(username+" "+password);
 			
 			User user = new User();
 			
@@ -51,6 +52,7 @@ public class UserServlet extends HttpServlet {
 			user.setPassword(password);
 			
 			if(userService.checkUser(user)) {
+				
 				//取值，取出全体用户的信息，放置在attitude域
 				ArrayList<User> allUser = userService.getAllUsers();
 				
@@ -90,14 +92,10 @@ public class UserServlet extends HttpServlet {
             user.setEmail(email_add);
 
             userService.addUser(user);
-            
-			ArrayList<User> allUser = userService.getAllUsers();
 			
-			request.setAttribute("allUser", allUser);
-			
-			request.getSession().setAttribute("user", user);
+			request.setAttribute("allUser", userService.getAllUsers());
 
-            request.getRequestDispatcher("list.jsp").forward(request, response);							
+            request.getRequestDispatcher("list.jsp").forward(request, response);	
 			
 		  }else if("delete".equals(type)) {
 
@@ -108,13 +106,9 @@ public class UserServlet extends HttpServlet {
 				user.setId(Integer.parseInt(id));
 				//将字符串转为整形
 				if(userService.deleteUser(user)) {
-					//再一次向数据库发出请求，读取全体用户的信息。
-					//取值，取出全体用户的信息，放置在attitude域
-					ArrayList<User> allUser = userService.getAllUsers();
 					
-					request.setAttribute("allUser", allUser);
+					request.setAttribute("allUser", userService.getAllUsers());
 					
-					request.getSession().setAttribute("user", user);
 					//页面跳转至正确的新的页面
 					request.getRequestDispatcher("list.jsp").forward(request, response);			
 			
@@ -137,11 +131,7 @@ public class UserServlet extends HttpServlet {
 
 	            userService.deleteUserBySelected(para2);
 	            
-				ArrayList<User> allUser = userService.getAllUsers();
-				
-				request.setAttribute("allUser", allUser);
-
-	            request.getSession().setAttribute("allUsers", userService.getAllUsers());
+	            request.setAttribute("allUsers", userService.getAllUsers());
 
 	            request.getRequestDispatcher("list.jsp").forward(request, response);				
 		
@@ -180,12 +170,8 @@ public class UserServlet extends HttpServlet {
 	            user.setEmail(email_mod);
 
 	            userService.modifyUser(user);          
-
-				ArrayList<User> allUser = userService.getAllUsers();
 				
-				request.setAttribute("allUser", allUser);
-				
-				request.getSession().setAttribute("user", user);
+				request.setAttribute("allUser", userService.getAllUsers());
 
 	            request.getRequestDispatcher("list.jsp").forward(request, response);
 				

@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Login</title>
 
+	<!-- 加载css样式表 -->
 	<link rel="stylesheet" type="text/css" href="bootstrap_plugins/css/style.css">
 	
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -26,6 +27,8 @@
     --%>
       
 	<script type="text/javascript">
+	
+		//设置登录背景
 	    $(function(){
 	        Victor("container", "output");   //登录背景函数
 	        $("#username").focus();
@@ -35,6 +38,13 @@
 	            }
 	        });
 	    });
+	    
+	   //取出登录失败后传回来的参数error并与yes比较
+	    var errori ='<%=request.getParameter("error")%>';
+	    if(errori=='yes'){
+	     alert("登录失败!请检查用户名和密码!");
+	    }
+	    
 	</script>
 
 </head>
@@ -56,13 +66,7 @@
 <div style="text-align:center;">
 </div>
 </body>
-</html>
-
-<!-- 当账号或密码输入错误时给出提示信息 -->
-<hr/>
-<c:if test="${message}!=null">
-	<c:out value="${message}"/>
-</c:if>  		
+</html> 		
     		
 </body>
 </html>

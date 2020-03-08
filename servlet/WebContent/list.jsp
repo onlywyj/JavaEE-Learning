@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="css/style.css">
     
 <script type="text/javascript">
+
 	function del(){
 		return window.confirm("真的要删除该用户吗？此操作不可恢复!");
 	}
+	
 	//全选和批量删除
     function select_all(){
     	var mycheck = document.getElementById("all");
@@ -45,7 +47,7 @@
         var flag = false ;//标记判断是否选中一个                 
         for(var i=0;i<names.length;i++){  
             if(names[i].checked){ 
-            	alert("真的要删除该用户吗？此操作不可恢复!");         	
+            	confirm("真的要删除该用户吗？此操作不可恢复!");         	
                     flag = true ;  
                     break ;  
              }  
@@ -66,6 +68,11 @@
          }		
 	}
 	
+	//安全退出提示
+	function sign_out(){
+		confirm("确认退出？");
+	}
+	
 </script>
 
 </head>
@@ -79,7 +86,9 @@
 		</div> 
 		<div class="col-md-2 col-md-offset-10" >           
 			<h3>欢迎您，<font color="red">${username}</font></h3>
-			<h3><a href="#">安全退出</a></h3>
+			<a href="UserServlet?type=signout">
+				<button type="button" class="btn btn-default btn-success" onclick="sign_out()">安全退出</button>
+			</a>
 		</div>
 		<h2 style="text-align:center">用户信息一览</h2>
 		<hr/>

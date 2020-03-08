@@ -21,6 +21,15 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+<script type="text/javascript">
+
+	//安全退出提示
+	function sign_out(){
+		alert("确认退出？");
+	}
+	
+</script>
+	
 </head>
 
 <body>
@@ -32,7 +41,9 @@
 	        </div> 
 	        <div class="col-md-2 col-md-offset-10" >           
 	        	<h3>欢迎您，<font color="red">${username}</font></h3>
-	        	<h3><a href="#">安全退出</a></h3>
+	        	<a href="UserServlet?type=signout">
+					<button type="button" class="btn btn-default btn-success" onclick="sign_out()">安全退出</button>
+				</a>
 	        </div>              
 		<h2 style="text-align:center">新增用户信息</h2>             
 		<hr/> 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,11 +63,9 @@ public class UserServlet extends HttpServlet {
 				//页面跳转至正确的新的页面
 				request.getRequestDispatcher("list.jsp").forward(request, response);
 				
-			}else {
-				//设置登录出错信息提示
-				request.setAttribute("msg","错误的用户名和密码！请重新输入！");
-				//重新跳转至login.jsp
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}else {				
+				//重新跳转至login.jsp,并传递一个参数error
+				request.getRequestDispatcher("login.jsp?error=yes").forward(request, response);
 
 			  }
 		  }
@@ -110,7 +109,7 @@ public class UserServlet extends HttpServlet {
 					request.setAttribute("allUser", userService.getAllUsers());
 					
 					//页面跳转至正确的新的页面
-					request.getRequestDispatcher("list.jsp").forward(request, response);			
+					request.getRequestDispatcher("list.jsp").forward(request, response);	
 			
 		         }
 			}else if("delBySelected".equals(type)) {
@@ -130,8 +129,13 @@ public class UserServlet extends HttpServlet {
 	            String para2 = inParams.substring(0, inParams.length()-1);	//去掉para2中的最后一个逗号
 
 	            userService.deleteUserBySelected(para2);
+	           
+	            ArrayList<User> allUser = userService.getAllUsers();
+				
+				request.setAttribute("allUser", allUser);
 	            
-	            request.setAttribute("allUsers", userService.getAllUsers());
+				//此方法不知为何取不出来数据，暂时记录
+	            //request.setAttribute("allUsers", userService.getAllUsers());
 
 	            request.getRequestDispatcher("list.jsp").forward(request, response);				
 		
@@ -176,5 +180,32 @@ public class UserServlet extends HttpServlet {
 	            request.getRequestDispatcher("list.jsp").forward(request, response);
 				
 			}
+		
+		if("signout".equals(type)) {
+
+	    //销毁session
+		request.getSession().removeAttribute("username");
+		//request.getSession().invalidate();
+		
+		//清除页面缓存
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+		//请求和响应的信息都不应该被存储在对方的磁盘系统中； 
+		response.addHeader( "Cache-Control", "no-store");
+		//于客户机的每次请求，代理服务器必须向服务器验证缓存是否过时；
+		response.addHeader( "Cache-Control", "must-revalidate");
+		
+		//删除cookie
+		Cookie cookie=new Cookie("user", null); //既然删除cooki,user属性值直接设为 null
+		//设置setMaxAge(0)
+		cookie.setMaxAge(0);
+		//响应
+		//response.addCookie(cookie);
+		
+		//跳转到登录页面
+		response.sendRedirect("login.jsp");
+	
+		}
 	}
 }

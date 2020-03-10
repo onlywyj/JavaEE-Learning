@@ -1,5 +1,6 @@
 package com.wyj.dao;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.wyj.model.User;
@@ -105,5 +106,55 @@ public class UserDaoImpl implements UserDao {
         User user = SQLHelper.executeQueryUser(sql, parameters).get(0);
         return user;
 	}
+
+	@Override
+	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize) {
+		
+		ArrayList<User> arrayUsersByPage = new ArrayList<User>();
+
+	    String sql =  "select * from tuserlogin limit "+(currentPage-1)*pageSize +","+pageSize;
+
+	    String []parameters = null;
+
+	    arrayUsersByPage = SQLHelper.executeQueryUser(sql, parameters);
+
+	     return arrayUsersByPage;
+
+	    }
+
+	@Override
+	public Integer getUserCount() {
+		
+        int count = 0;
+
+        String sql = "select count(*) from tuserlogin";
+
+        String []parameters = null;
+
+        ResultSet rs = SQLHelper.executeQuery(sql, parameters);
+
+        try {
+
+            if(rs.next()) {
+
+                count = rs.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }finally {
+
+            SQLHelper.close(SQLHelper.getRs(),SQLHelper.getPs(), SQLHelper.getCt());
+
+        }
+
+        return count;
+
+    }
+		
+	
 
 }

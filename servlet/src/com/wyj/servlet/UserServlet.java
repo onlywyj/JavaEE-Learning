@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.wyj.model.PageBean;
 import com.wyj.model.User;
 import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
@@ -38,9 +39,12 @@ public class UserServlet extends HttpServlet {
 		
 		String type = request.getParameter("type");
 
+		
 		if("login".equals(type)) {
 			
 			String username = request.getParameter("username");
+			
+			//String password = request.getParameter("password");
 			
 			String password = MD5.getResult(request.getParameter("password"));
 			
@@ -54,10 +58,17 @@ public class UserServlet extends HttpServlet {
 			
 			if(userService.checkUser(user)) {
 				
-				//取值，取出全体用户的信息，放置在attitude域
-				ArrayList<User> allUser = userService.getAllUsers();
-				
-				request.setAttribute("allUser", allUser);
+				int currentPage = 1;
+
+				int pageSize = 5;    //每页数量为5
+
+	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+
+	            int recordCount = userService.getUserCount();
+
+	            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+
+	            request.setAttribute("pageBean", pageBean);
 				//把正确的登录用户名放入session中 30min
 				request.getSession().setAttribute("username", username);
 				//页面跳转至正确的新的页面
@@ -69,7 +80,7 @@ public class UserServlet extends HttpServlet {
 
 			  }
 		  }
-		
+	
 		if("add".equals(type)) {
 			
 			String username_add = request.getParameter("username");
@@ -207,5 +218,6 @@ public class UserServlet extends HttpServlet {
 		response.sendRedirect("login.jsp");
 	
 		}
+		
 	}
 }

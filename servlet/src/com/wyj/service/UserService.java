@@ -28,5 +28,11 @@ public interface UserService {
 		public User findUserById(String id);
 		
 		//按照Name的值查询用户
-		//public User findUserByName(String name);		
+		//public User findUserByName(String name);	
+		
+		//增加分页代码
+		public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize);
+		
+		//分页数据查询方法
+		public Integer getUserCount();
 }

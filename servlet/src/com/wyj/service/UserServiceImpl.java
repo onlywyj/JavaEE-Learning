@@ -46,6 +46,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUserBySelected(para2);
 	}
 
+	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize) {
+		return userDao.getAllUsersByPage(currentPage, pageSize);
+	}
+
+	public Integer getUserCount() {
+		return userDao.getUserCount();
+	}
+
 	
 	
 }

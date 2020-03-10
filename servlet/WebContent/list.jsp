@@ -106,7 +106,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${allUser}" var="user">
+					<c:forEach items="${pageBean.recordList}" var="user">
 					<tr>
 						<td><input type="checkbox" name="myselect" value="${user.id}"/></td>
 						<td>${user.id}</td>
@@ -127,10 +127,32 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			 <input type="submit" value="aaa" id="doSubmit" style="display:none"/>
 		</div>
 		</form>
 	</div>
+	<div style="text-align: center">
+
+    <nav aria-label="Pagenavigation">
+
+    <ul class="pagination">
+
+    <li><a href="#" aria-label="Previous"><spanaria-hidden="true">&laquo;</span></a></li> 
+
+    <c:forEach begin="1" end="${pageBean.pageCount}" var="i">
+
+        <li><a href="PageServlet?currentPage=${i}">${i}</a></li>
+
+    </c:forEach>                           
+
+<li><a href="#"aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+
+</li>
+
+    </ul>
+
+    </nav>
+
+</div>
 </div>
 
 

@@ -21,13 +21,13 @@
   </servlet-mapping>
     <servlet>
     <description></description>
-    <display-name>PageService</display-name>
-    <servlet-name>PageService</servlet-name>
-    <servlet-class>com.wyj.servlet.PageService</servlet-class>
+    <display-name>PageServlet</display-name>
+    <servlet-name>PageServlet</servlet-name>
+    <servlet-class>com.wyj.servlet.PageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PageService</servlet-name>
-    <url-pattern>/PageService</url-pattern>
+    <servlet-name>PageServlet</servlet-name>
+    <url-pattern>/PageServlet</url-pattern>
   </servlet-mapping>
   <filter>
     <display-name>CharacterEncoding</display-name>

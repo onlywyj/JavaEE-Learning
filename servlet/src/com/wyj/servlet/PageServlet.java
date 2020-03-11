@@ -14,7 +14,7 @@ import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
 
 
-public class PageService extends HttpServlet {
+public class PageServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class PageService extends HttpServlet {
 		
 		String currentPage = request.getParameter("currentPage");
 
-        int pageSize = 5;    //每页数量为5
+        int pageSize = 10;    //每页数量为10
 
         ArrayList<User> recordList = userService.getAllUsersByPage(Integer.parseInt(currentPage), pageSize);
 

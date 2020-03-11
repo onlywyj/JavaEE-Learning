@@ -122,7 +122,6 @@
 							<button type="button" class="btn btn-default btn-info" >编辑</button>
 						</a>
 						</td>
-						<!--  <td><a onclick="return del()" href="UserServlet?type=delete&id=${user.id}">删除</a>&nbsp;&nbsp;<a href="UserServlet?type=userModify&id=${user.id}">编辑</a></td>-->
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -144,9 +143,9 @@
 
     </c:forEach>                           
 
-<li><a href="#"aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+	<li><a href="#"aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
 
-</li>
+	</li>
 
     </ul>
 

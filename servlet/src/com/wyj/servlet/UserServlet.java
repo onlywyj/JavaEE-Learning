@@ -38,6 +38,10 @@ public class UserServlet extends HttpServlet {
 		//两种方法
 		
 		String type = request.getParameter("type");
+		
+		int currentPage = 1;
+
+		int pageSize = 10;    //每页数量为10
 
 		
 		if("login".equals(type)) {
@@ -58,9 +62,6 @@ public class UserServlet extends HttpServlet {
 			
 			if(userService.checkUser(user)) {
 				
-				int currentPage = 1;
-
-				int pageSize = 5;    //每页数量为5
 
 	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
 
@@ -103,7 +104,13 @@ public class UserServlet extends HttpServlet {
 
             userService.addUser(user);
 			
-			request.setAttribute("allUser", userService.getAllUsers());
+            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+
+            int recordCount = userService.getUserCount();
+
+            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+
+            request.setAttribute("pageBean", pageBean);
 
             request.getRequestDispatcher("list.jsp").forward(request, response);	
 			
@@ -117,7 +124,13 @@ public class UserServlet extends HttpServlet {
 				//将字符串转为整形
 				if(userService.deleteUser(user)) {
 					
-					request.setAttribute("allUser", userService.getAllUsers());
+					ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+
+		            int recordCount = userService.getUserCount();
+
+		            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+
+		            request.setAttribute("pageBean", pageBean);
 					
 					//页面跳转至正确的新的页面
 					request.getRequestDispatcher("list.jsp").forward(request, response);	
@@ -141,9 +154,13 @@ public class UserServlet extends HttpServlet {
 
 	            userService.deleteUserBySelected(para2);
 	           
-	            ArrayList<User> allUser = userService.getAllUsers();
-				
-				request.setAttribute("allUser", allUser);
+	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+
+	            int recordCount = userService.getUserCount();
+
+	            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+
+	            request.setAttribute("pageBean", pageBean);
 	            
 				//此方法不知为何取不出来数据，暂时记录
 	            //request.setAttribute("allUsers", userService.getAllUsers());
@@ -186,7 +203,13 @@ public class UserServlet extends HttpServlet {
 
 	            userService.modifyUser(user);          
 				
-				request.setAttribute("allUser", userService.getAllUsers());
+	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+
+	            int recordCount = userService.getUserCount();
+
+	            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+
+	            request.setAttribute("pageBean", pageBean);
 
 	            request.getRequestDispatcher("list.jsp").forward(request, response);
 				

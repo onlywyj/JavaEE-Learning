@@ -28,6 +28,18 @@
       
 	<script type="text/javascript">
 	
+	//禁用此页面的后退操作
+    $(function(){
+    	if(window.history && window.history.pushState){
+    		$(window).on('popstate',function(){
+    			window.history.pushState('forward',null,'#');
+    			window.history.forward();
+    		});
+    	}
+    	window.history.pushState('forward',null,'#'); //在IE浏览器中此方法需要执行两次
+		window.history.forward();
+    });
+	
 		//设置登录背景
 	    $(function(){
 	        Victor("container", "output");   //登录背景函数

@@ -24,4 +24,10 @@ public class Demo {
 		us.insert();
 	}
 	
+	@Test
+	public void run2() {
+		
+		us.delete();
+		us.insert();
+	}	
 }

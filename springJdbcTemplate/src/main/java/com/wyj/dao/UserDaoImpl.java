@@ -13,9 +13,17 @@ import com.wyj.model.User;
 public class UserDaoImpl implements UserDao {
 
 	//Spring JDBCTemplate 
-	private static JdbcTemplate jt;
+	private  JdbcTemplate jt;
 	
+	public void setJt(JdbcTemplate jt) {
+		this.jt = jt;
+	}
 	
+	public JdbcTemplate getJt() {
+		return jt;
+	}
+	
+	/*
 	private static DriverManagerDataSource ds;
 	static {
 		ds = new DriverManagerDataSource();
@@ -26,6 +34,8 @@ public class UserDaoImpl implements UserDao {
 		jt = new JdbcTemplate();
 		jt.setDataSource(ds);
 	}
+	*/
+	
 	@Override
 	public void insert(User user) {
 		String sql = "insert into user values(?,?,?,?,?)";

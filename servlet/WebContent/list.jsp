@@ -47,21 +47,23 @@
         var flag = false ;//标记判断是否选中一个                 
         for(var i=0;i<names.length;i++){  
             if(names[i].checked){ 
-            	confirm("真的要删除该用户吗？此操作不可恢复!");         	
-                    flag = true ;  
-                    break ;  
+            	var status = confirm("真的要删除该用户吗？此操作不可恢复!"); 
+            	if(status){
+            		flag = true;  
+                    break ;	
+            	}else{
+            		return false;
+            	}                     
              }  
          }
+        
         if(flag){
         	for(var i=0;i<names.length;i++){
-        		if(names[i].checked){
-        			
-        			deleteId.push(names[i].value);
-        			
-        		}
-        		
+        		if(names[i].checked){       			
+        			deleteId.push(names[i].value);       			
+        		}       		
         	}       		      	
-        	window.location.href="UserServlet?type=delBySelected&myselect="+deleteId;
+        	window.location.href="UserServlet?type=delBySelected&myselect="+deleteId; //将参数传给后端代码处理
         }else if(!flag){  
             alert("请最少选择一项！");  
             return false ;  
@@ -69,8 +71,8 @@
 	}
 	
 	//安全退出提示
-	function sign_out(){
-		confirm("确认退出？");
+	function logout(){
+		return window.confirm("确认退出？");
 	}
 	
 </script>
@@ -86,8 +88,8 @@
 		</div> 
 		<div class="col-md-2 col-md-offset-10" >           
 			<h3>欢迎您，<font color="red">${username}</font></h3>
-			<a href="UserServlet?type=signout">
-				<button type="button" class="btn btn-default btn-success" onclick="sign_out()">安全退出</button>
+			<a href="UserServlet?type=logout">
+				<button type="button" class="btn btn-default btn-success" onclick="return logout()">安全退出</button>
 			</a>
 		</div>
 		<h2 style="text-align:center">用户信息一览</h2>
@@ -96,7 +98,7 @@
 	 	<form class="form-horizontal" action="UserServlet?type=delBySelected" method="post">
 		<div class="col-md-12 column">
 			<button type="button" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
-			<button type="button" id="btn_del" class="btn btn-warning" onclick="deleteBySelected();" >批量删除</button>
+			<button type="button" id="btn_del" class="btn btn-warning" onclick="return deleteBySelected()" >批量删除</button>
 			<hr/>
 			<table class="table table-bordered">
 				<thead>

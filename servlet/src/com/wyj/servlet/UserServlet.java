@@ -62,7 +62,6 @@ public class UserServlet extends HttpServlet {
 			
 			if(userService.checkUser(user)) {
 				
-
 	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
 
 	            int recordCount = userService.getUserCount();
@@ -215,7 +214,7 @@ public class UserServlet extends HttpServlet {
 				
 			}
 		
-		if("signout".equals(type)) {
+		if("logout".equals(type)) {
 
 	    //销毁session
 		request.getSession().removeAttribute("username");

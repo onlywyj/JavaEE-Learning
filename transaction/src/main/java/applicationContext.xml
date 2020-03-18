@@ -36,6 +36,29 @@
     <bean name="userService" class="com.wyj.service.UserServiceImpl">
     	<property name="userDao" ref="userDao"/>
     </bean>
+    <!-- 5、加入spring的事务管理 -->
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 6、配置通知 -->
+	<tx:advice id="myAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="transfer" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="insert*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="delete*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="modify*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="update*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="search*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="find*" isolation="REPEATABLE_READ" propagation="REQUIRED"   read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 7、配置aop -->
+	<aop:config>
+		<!--7.1 配置切点  -->
+		<aop:pointcut expression="execution(* com.wyj.service.*ServiceImpl.transfer(..))" id="myPointcut"/>
+		<!-- 7.2 配置切面 -->
+		<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
 </beans>
 
 

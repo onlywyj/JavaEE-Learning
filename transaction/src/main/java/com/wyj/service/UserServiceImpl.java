@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
 		
 		//从某个账户取出钱，减少
 		userDao.withdraw(outUser, money);
+		//人为加入的异常
+		int i = 1/0;
 		//把钱增加到另一个账户
 		userDao.deposit(inUser, money);
 

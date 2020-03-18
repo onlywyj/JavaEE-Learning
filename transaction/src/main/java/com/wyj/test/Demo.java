@@ -1,19 +1,16 @@
 package com.wyj.test;
 
-import javax.annotation.Resource;
-
-import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.wyj.service.UserService;
 
 public class Demo {
 	
-	@Resource(name="userService")
-	private UserService us;
-	@Test
-	public void run() {
-
+	public static void main(String[] args) {
+		
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		UserService us = (UserService) ac.getBean("userService");
 		us.transfer(1, 2, 500.0);
 	}
-
 }

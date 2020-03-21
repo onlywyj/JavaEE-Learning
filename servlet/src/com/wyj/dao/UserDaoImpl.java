@@ -13,8 +13,11 @@ public class UserDaoImpl implements UserDao {
 		
 		//SQL语句和parameters参数表
 		String sql = "select * from tuserlogin where username=? and password=?";
+		
 		String [] parameters= {user.getUsername(),user.getPassword()};
+		
 		ArrayList<User> allUser = SQLHelper.executeQueryUser(sql, parameters);
+		
 		//集合不为空，登录用户名和密码正确，返回值为真
 		if(allUser.size()>0) {
 			return true;
@@ -27,7 +30,9 @@ public class UserDaoImpl implements UserDao {
 	public ArrayList<User> getAllUsers() {
 		
 		String sql = "select * from tuserlogin";
+		
 		String [] parameters= {};
+		
 		ArrayList<User> allUser = SQLHelper.executeQueryUser(sql, parameters);
 		
 		return allUser;
@@ -37,11 +42,14 @@ public class UserDaoImpl implements UserDao {
 	public boolean addUser(User user) {
 		
 		boolean b = false;
+		
         String sql = "insert into tuserlogin(username,password,grade,email) values(?,?,?,?)";
+        
         String []parameters = {user.getUsername(),user.getPassword(),String.valueOf(user.getGrade()),user.getEmail()};
-        try {
-            SQLHelper.executeUpdate(sql, parameters);
-            b = true;
+        
+        try {    	
+            SQLHelper.executeUpdate(sql, parameters);         
+            b = true;           
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,8 +60,11 @@ public class UserDaoImpl implements UserDao {
 	public boolean deleteUser(User user) {
 		
 		boolean b = false;
+		
 		String sql = "delete from tuserlogin where id=?";
+		
 		String [] parameters= {user.getId().toString()}; //将整形转换为字符串类型
+		
 		try {
 			SQLHelper.executeUpdate(sql, parameters);
 			b = true;
@@ -68,7 +79,9 @@ public class UserDaoImpl implements UserDao {
 	public boolean deleteUserBySelected(String para2) {
 		
 		boolean b = false;
+		
 		String sql = "delete from tuserlogin where id in("+para2+")"; //不知道为啥需要加（"+para2+"）双引号，先记着
+		
 		//String [] parameters= {para2};
 		try {
 			
@@ -87,8 +100,11 @@ public class UserDaoImpl implements UserDao {
 	public boolean modifyUser(User user) {
 		
 		boolean b = false;
+		
         String sql = "update tuserlogin set username=? , password=? , grade=? , email=? where id=?";
+        
         String []parameters = {user.getUsername(),user.getPassword(),String.valueOf(user.getGrade()),user.getEmail(),user.getId().toString()};
+        
         try {
             SQLHelper.executeUpdate(sql, parameters);
             b = true;
@@ -102,8 +118,11 @@ public class UserDaoImpl implements UserDao {
 	public User findUserById(String id) {
 		
         String sql ="select *from tuserlogin where id=?";
+        
         String []parameters = {id};
+        
         User user = SQLHelper.executeQueryUser(sql, parameters).get(0);
+        
         return user;
 	}
 
@@ -134,21 +153,13 @@ public class UserDaoImpl implements UserDao {
         ResultSet rs = SQLHelper.executeQuery(sql, parameters);
 
         try {
-
             if(rs.next()) {
-
                 count = rs.getInt(1);
-
             }
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }finally {
-
             SQLHelper.close(SQLHelper.getRs(),SQLHelper.getPs(), SQLHelper.getCt());
-
         }
 
         return count;

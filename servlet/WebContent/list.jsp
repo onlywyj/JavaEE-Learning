@@ -131,29 +131,19 @@
 		</div>
 		</form>
 	</div>
+	<!-- 数据分页 -->
 	<div style="text-align: center">
-
-    <nav aria-label="Pagenavigation">
-
-    <ul class="pagination">
-
-    <li><a href="#" aria-label="Previous"><spanaria-hidden="true">&laquo;</span></a></li> 
-
-    <c:forEach begin="1" end="${pageBean.pageCount}" var="i">
-
-        <li><a href="PageServlet?currentPage=${i}">${i}</a></li>
-
-    </c:forEach>                           
-
-	<li><a href="#"aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-
-	</li>
-
-    </ul>
-
-    </nav>
-
-</div>
+	    <nav aria-label="Pagenavigation">
+		    <ul class="pagination">
+		    <li><a href="#" aria-label="Previous"><spanaria-hidden="true">&laquo;</span></a></li> 
+		    <c:forEach begin="1" end="${pageBean.pageCount}" var="i">
+		        <li><a href="PageServlet?currentPage=${i}">${i}</a></li>
+		    </c:forEach>                           
+			<li><a href="#"aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+			</li>
+		    </ul>
+	    </nav>
+	</div>
 </div>
 
 

@@ -3,10 +3,15 @@ package com.wyj.model;
 public class User {
 	
 	private Integer id;
+	
 	private String username;
+	
 	private String password;
+	
 	private Integer grade;
+	
 	private String email;
+	
 	public Integer getId() {
 		return id;
 	}

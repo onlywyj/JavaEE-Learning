@@ -83,7 +83,7 @@ public class PageBean {
 	public PageBean() {
 	}
 	
-    public PageBean(int currentPage,int pageSize,int recordCount,List recordList){
+    public PageBean(int currentPage, int pageSize, int recordCount, List recordList){
 
     	this.currentPage=currentPage;
 

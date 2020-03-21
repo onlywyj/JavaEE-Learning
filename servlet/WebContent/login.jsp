@@ -78,7 +78,4 @@
 <div style="text-align:center;">
 </div>
 </body>
-</html> 		
-    		
-</body>
-</html>
+</html> 		  	

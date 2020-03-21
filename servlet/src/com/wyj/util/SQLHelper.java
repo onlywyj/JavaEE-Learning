@@ -16,13 +16,21 @@ import com.wyj.model.User;
 public class SQLHelper {
 	
 	static Connection ct = null;
+	
 	static PreparedStatement ps = null;
+	
 	static ResultSet rs = null;
+	
 	static String url ="";
+	
 	static String user = "";
+	
 	static String password = "";
+	
 	static String driver = "";
+	
 	static Properties pro = null;
+	
 	static InputStream file = null;
 
 	static{
@@ -112,7 +120,9 @@ public class SQLHelper {
 	
 	//函数的二次封装，避免调用者手动关闭结果集合，根据业务逻辑的需要，model
 	public static ArrayList<User> executeQueryUser(String sql,String[]parameters){
+		
 		ArrayList<User> allUser = new ArrayList<User>();
+		
 		try {
 			ct = getConnection();
 			ps = ct.prepareStatement(sql);
@@ -142,6 +152,7 @@ public class SQLHelper {
 	}
 	
 	public static void close(ResultSet rs,Statement ps,Connection ct) {
+		
 		if(rs!=null) {
 			try {
 				rs.close();

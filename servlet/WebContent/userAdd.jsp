@@ -34,17 +34,17 @@
 
 <body>
 
-	<div class="container">
-	    <div class="row clearfix">
-	        <div class="col-md-12" style="background:#1E90FF;color:white">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12" style="background:#1E90FF;color:white">
 	            <h1 style="text-align:center">用户信息管理系统</h1>          
-	        </div> 
-	        <div class="col-md-2 col-md-offset-10" >           
-	        	<h3>欢迎您，<font color="red">${username}</font></h3>
-	        	<a href="UserServlet?type=logout">
-					<button type="button" class="btn btn-default btn-success" onclick="return logout()">安全退出</button>
-				</a>
-	        </div>              
+	    </div> 
+	    <div class="col-md-2 col-md-offset-10" >           
+        	<h3>欢迎您，<font color="red">${username}</font></h3>
+        	<a href="UserServlet?type=logout">
+				<button type="button" class="btn btn-default btn-success" onclick="return logout()">安全退出</button>
+			</a>
+	    </div>              
 		<h2 style="text-align:center">新增用户信息</h2>             
 		<hr/> 
 		                     

@@ -17,11 +17,6 @@ import com.wyj.util.MD5;
 
 public class UserServlet extends HttpServlet {
 
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -32,7 +27,6 @@ public class UserServlet extends HttpServlet {
 		this.doPost(request, response);
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//this.doGet(request, response);
 		//两种方法
@@ -42,8 +36,7 @@ public class UserServlet extends HttpServlet {
 		int currentPage = 1;
 
 		int pageSize = 10;    //每页数量为10
-
-		
+	
 		if("login".equals(type)) {
 			
 			String username = request.getParameter("username");
@@ -69,8 +62,10 @@ public class UserServlet extends HttpServlet {
 	            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
 
 	            request.setAttribute("pageBean", pageBean);
+	            
 				//把正确的登录用户名放入session中 30min
 				request.getSession().setAttribute("username", username);
+				
 				//页面跳转至正确的新的页面
 				request.getRequestDispatcher("list.jsp").forward(request, response);
 				
@@ -120,6 +115,7 @@ public class UserServlet extends HttpServlet {
 				User user = new User();
 				
 				user.setId(Integer.parseInt(id));
+				
 				//将字符串转为整形
 				if(userService.deleteUser(user)) {
 					
@@ -222,23 +218,29 @@ public class UserServlet extends HttpServlet {
 		
 		//清除页面缓存
 		response.setHeader("Cache-Control", "no-cache");
+		
 		response.setHeader("Pragma", "no-cache");
+		
 		response.setDateHeader("Expires", 0);
+		
 		//请求和响应的信息都不应该被存储在对方的磁盘系统中； 
 		response.addHeader( "Cache-Control", "no-store");
+		
 		//于客户机的每次请求，代理服务器必须向服务器验证缓存是否过时；
 		response.addHeader( "Cache-Control", "must-revalidate");
 		
 		//删除cookie
-		Cookie cookie=new Cookie("user", null); //既然删除cooki,user属性值直接设为 null
+		Cookie cookie=new Cookie("user", null); //删除cooki,user属性值直接设为 null
+		
 		//设置setMaxAge(0)
 		cookie.setMaxAge(0);
+		
 		//响应
 		//response.addCookie(cookie);
 		
-		//跳转到登录页面
+		//跳转到登录页面，重定向
 		response.sendRedirect("login.jsp");
-	
+		
 		}
 		
 	}

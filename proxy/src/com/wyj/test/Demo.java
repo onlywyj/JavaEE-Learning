@@ -9,7 +9,7 @@ import com.wyj.service.UserServiceImpl;
 public class Demo {
 	
 	@Test
-	//Spring AOP
+	//Spring AOP JDK
 	public void run() {
 		
 		//1、获取目标对象

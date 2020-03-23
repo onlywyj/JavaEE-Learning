@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+       <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyj.model">
+	<select id="findEmployeeById" parameterType="java.lang.Integer"
+		resultType="com.wyj.model.Employee">
+		select * from employee where emp_id = #{emp_id}
+	</select>
+	<select id="getAllEmployee" resultType="com.wyj.model.Employee">
+		select * from employee
+	</select>
+	<insert id="insertEmployee"  parameterType="com.wyj.model.Employee">
+		insert into employee(emp_id,emp_name,emp_gender,emp_password,emp_grade,emp_email,emp_department_id)
+		values(#{id},#{emp_id},#{emp_name},#{emp_gender},#{emp_password},#{emp_grade},#{emp_email},#{emp_department_id})
+	</insert>
+	<delete id="deleteEmployeeById" parameterType="java.lang.Integer">
+		delete from employee where emp_id = #{emp_id}
+	</delete>
+</mapper>

@@ -32,6 +32,7 @@ hs_err_pid*
 
 #自定义忽略文件
 /target/
+/.metadata/
 
 #built application files
 *.apk

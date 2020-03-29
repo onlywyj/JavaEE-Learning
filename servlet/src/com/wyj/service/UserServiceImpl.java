@@ -38,14 +38,19 @@ public class UserServiceImpl implements UserService {
 		return userDao.modifyUser(user);
 	}
 
+	public boolean deleteUserBySelected(String para2) {
+		return userDao.deleteUserBySelected(para2);
+	}
+	
 	public User findUserById(String id) {
 		return userDao.findUserById(id);
 	}
 
-	public boolean deleteUserBySelected(String para2) {
-		return userDao.deleteUserBySelected(para2);
+	@Override
+	public ArrayList<User> findUserByName(String username) {
+		return userDao.findUserByName(username);
 	}
-
+	
 	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize) {
 		return userDao.getAllUsersByPage(currentPage, pageSize);
 	}

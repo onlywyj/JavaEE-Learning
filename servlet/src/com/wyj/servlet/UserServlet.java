@@ -19,7 +19,6 @@ public class UserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	private UserService userService = new UserServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,48 +74,64 @@ public class UserServlet extends HttpServlet {
 
 			  }
 		  }
+		
+		if("findByName".equals(type)) {
+			
+			String username = request.getParameter("username");
+			
+			User user = new User();
+			
+			user.setUsername(username);
+			
+			ArrayList<User> allUsers = userService.findUserByName(username);
+			
+			System.out.println(allUsers);		
+			
+            request.setAttribute("pageBean.recordList", allUsers);
+
+            request.getRequestDispatcher("list.jsp").forward(request, response);
+      
+			}else if("add".equals(type)) {
+			
+				String username_add = request.getParameter("username");
 	
-		if("add".equals(type)) {
+	            String password_add = MD5.getResult(request.getParameter("password"));
+	
+	            String grade_add = request.getParameter("grade");
+	
+	            String email_add = request.getParameter("email");
+	
+	            User user = new User();
+	
+	            user.setUsername(username_add);
+	
+	            user.setPassword(password_add);
+	
+	            user.setGrade(Integer.parseInt(grade_add));
+	
+	            user.setEmail(email_add);
+	
+	            userService.addUser(user);
+				
+	            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
+	
+	            int recordCount = userService.getUserCount();
+	
+	            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
+	
+	            request.setAttribute("pageBean", pageBean);
+	
+	            request.getRequestDispatcher("list.jsp").forward(request, response);	
 			
-			String username_add = request.getParameter("username");
-
-            String password_add = MD5.getResult(request.getParameter("password"));
-
-            String grade_add = request.getParameter("grade");
-
-            String email_add = request.getParameter("email");
-
-            User user = new User();
-
-            user.setUsername(username_add);
-
-            user.setPassword(password_add);
-
-            user.setGrade(Integer.parseInt(grade_add));
-
-            user.setEmail(email_add);
-
-            userService.addUser(user);
-			
-            ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
-
-            int recordCount = userService.getUserCount();
-
-            PageBean pageBean = new PageBean(currentPage,pageSize,recordCount,recordList);
-
-            request.setAttribute("pageBean", pageBean);
-
-            request.getRequestDispatcher("list.jsp").forward(request, response);	
-			
-		  }else if("delete".equals(type)) {
+		    }else if("delete".equals(type)) {
 
 				String id = request.getParameter("id");
 				
 				User user = new User();
 				
-				user.setId(Integer.parseInt(id));
-				
 				//将字符串转为整形
+				user.setId(Integer.parseInt(id));
+						
 				if(userService.deleteUser(user)) {
 					
 					ArrayList<User> recordList = userService.getAllUsersByPage(currentPage, pageSize);
@@ -131,6 +146,7 @@ public class UserServlet extends HttpServlet {
 					request.getRequestDispatcher("list.jsp").forward(request, response);	
 			
 		         }
+				
 			}else if("delBySelected".equals(type)) {
 
 	            String [] para = request.getParameterValues("myselect");       

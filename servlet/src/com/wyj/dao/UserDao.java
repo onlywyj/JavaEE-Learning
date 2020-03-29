@@ -28,7 +28,7 @@ public interface UserDao {
 	public User findUserById(String id);
 	
 	//按照Name的值查询用户
-	//public User findUserByName(String name);
+	public ArrayList<User> findUserByName(String username);
 	
 	//增加分页代码
 	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize);

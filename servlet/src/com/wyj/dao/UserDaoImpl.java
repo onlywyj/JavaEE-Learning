@@ -127,6 +127,20 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public ArrayList<User> findUserByName(String username) {
+		
+		ArrayList<User> allUsers = new ArrayList<User>();
+		
+		String sql ="select *from tuserlogin where username=?";
+        
+        String []parameters = {username};
+        
+        allUsers = SQLHelper.executeQueryUser(sql, parameters);
+		
+		return allUsers;
+	}
+	
+	@Override
 	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize) {
 		
 		ArrayList<User> arrayUsersByPage = new ArrayList<User>();

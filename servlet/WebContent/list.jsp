@@ -97,12 +97,13 @@
 		
 
 		<div class="col-md-12 column">
-		
-			<input type="text" class="form-control"  placeholder="用户名"  style="width:150px;float:left">
-			<button class="btn btn-default btn-primary" type="button">查询用户</button>
+			
+			<form class="form" action="UserServlet?type=findByName" method="post">
+			<input type="text" class="form-control" placeholder="用户名"  name="username" style="width:150px;float:left">
+			<button type="submit" class="btn btn-default btn-primary">查询用户</button>
 			<button type="button" class="btn btn-success" onclick="window.location.href='userAdd.jsp'" >添加用户</button>
 			<button type="button" id="btn_del" class="btn btn-warning" onclick="return deleteBySelected()" >批量删除</button>
-			
+			</form>
 
 			<hr/>
 			<table class="table table-bordered">

@@ -3,14 +3,47 @@ package com.wyj.test;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
+import com.wyj.mapper.EmployeeMapper;
 import com.wyj.model.Employee;
 import com.wyj.service.EmployeeMapperServiceImpl;
 import com.wyj.service.EmployeeService;
 import com.wyj.service.EmployeeServiceImpl;
+import com.wyj.util.MyBatisUtil;
 
 public class MapperDemo {
+	
+	@Test
+	public void getAllEmployeeByNameAndGender() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+		EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+		Employee emp = new Employee();
+		emp.setEmp_name("张");
+		emp.setEmp_gender("男");
+		List<Employee> list = employeeMapper.getAllEmployeeByNameAndGender(emp);
+		Iterator<Employee> it = list.iterator();
+		while(it.hasNext()) {
+			Employee employee = it.next();
+			System.out.println(employee);
+		}
+	}
+	
+	@Test
+	public void getAllEmployeeByNameAndGender2() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+		EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+		Employee emp = new Employee();
+		emp.setEmp_name("张");
+		emp.setEmp_gender("男");
+		List<Employee> list = employeeMapper.getAllEmployeeByNameAndGender2(emp);
+		Iterator<Employee> it = list.iterator();
+		while(it.hasNext()) {
+			Employee employee = it.next();
+			System.out.println(employee);
+		}
+	}
 	
 	//查询全体员工
 	@Test

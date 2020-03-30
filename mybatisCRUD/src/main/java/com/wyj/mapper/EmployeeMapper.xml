@@ -9,6 +9,26 @@
 	<select id="getAllEmployee" resultType="com.wyj.model.Employee">
 		select * from employee
 	</select>
+	<select id="getAllEmployeeByNameAndGender" parameterType="com.wyj.model.Employee" resultType="com.wyj.model.Employee">
+		select * from employee where 1=1
+		<if test="emp_name!=null and emp_name!=''">
+			and emp_name like concat('%',#{emp_name},'%')
+		</if>
+		<if test="emp_gender!=null and emp_gender!=''">
+			and emp_gender like concat('%',#{emp_gender},'%')
+		</if>
+	</select>
+	<select id="getAllEmployeeByNameAndGender2" parameterType="com.wyj.model.Employee" resultType="com.wyj.model.Employee">
+		select * from employee
+		<where>
+		<if test="emp_name!=null and emp_name!=''">
+			and emp_name like concat('%',#{emp_name},'%')
+		</if>
+		<if test="emp_gender!=null and emp_gender!=''">
+			and emp_gender like concat('%',#{emp_gender},'%')
+		</if>
+		</where>
+	</select>
 	<select id="getAllEmployeeByName" parameterType="String" resultType="com.wyj.model.Employee">
 	<!-- 字符串拼接 ${} -->
 		select * from employee where emp_name like '%${_parameter}%'

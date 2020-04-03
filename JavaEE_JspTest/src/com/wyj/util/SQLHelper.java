@@ -101,7 +101,40 @@ public class SQLHelper {
 			close(rs,ps,ct);
 		}
 	}
+	
+	public ArrayList executeQuery2(String sql,String []parameters){
+	ArrayList al=new ArrayList();
+	try {
+		ct=getConnection();;
+		ps=ct.prepareStatement(sql);
+		//给sql问号赋值
+		for (int i = 0; i < parameters.length; i++){
+			ps.setString(i+1, parameters[i]);
+			}
+		rs=ps.executeQuery(); 
+		ResultSetMetaData rsmd=rs.getMetaData();
+		//用法rs可以的到有多少列
+		int columnNum=rsmd.getColumnCount();
+		//循环从a1中取出数据封装到ArrayList中
+		while(rs.next()){
+			Object []objects=new Object[columnNum];
+			for(int i=0;i<objects.length;i++)
+			{
+				objects[i]=rs.getObject(i+1); //返回对象数组
+				}
+			al.add(objects);
+			}
+			return al;
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		}finally{
 			
+		}
+}
+		
+		
 
 	
 	public static ResultSet executeQuery(String sql,String[]parameters) {

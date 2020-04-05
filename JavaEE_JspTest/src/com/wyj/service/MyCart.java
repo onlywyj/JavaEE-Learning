@@ -28,7 +28,7 @@ public class MyCart {
 			int buyNums= book.getBuyNums();    
 			buyNums++; //增加1之后，再次放进去即可    
 			book.setBuyNums(buyNums);   
-			} else {
+			}else{
 				//第一次购买    
 				hm.put(id, book);   
 				}  
@@ -82,7 +82,6 @@ public class MyCart {
 			totalPrice+= book.getBuyNums()*Float.parseFloat( book.getPrice());    
 			}   
 		return totalPrice; 
-	}
-	
+	}	
 	
 }

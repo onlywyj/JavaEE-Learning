@@ -40,11 +40,13 @@ public class SQLHelper {
 			pro = new Properties();
 			file = SQLHelper.class.getClassLoader().getResourceAsStream("db.properties");
 			pro.load(file); 
+			driver = pro.getProperty("driver");
+			Class.forName(driver);
+			System.out.println("数据库驱动加载成功!");
 			url = pro.getProperty("url");
 			user = pro.getProperty("user");
 			password = pro.getProperty("password");
-			driver = pro.getProperty("driver");
-			Class.forName(driver); 
+			System.out.println("数据库成功连接!"); 
 			} catch (Exception e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -108,12 +110,14 @@ public class SQLHelper {
 		ct=getConnection();;
 		ps=ct.prepareStatement(sql);
 		//给sql问号赋值
+		if(parameters!=null) {
 		for (int i = 0; i < parameters.length; i++){
 			ps.setString(i+1, parameters[i]);
 			}
+		}
 		rs=ps.executeQuery(); 
 		ResultSetMetaData rsmd=rs.getMetaData();
-		//用法rs可以的到有多少列
+		//得到有多少列
 		int columnNum=rsmd.getColumnCount();
 		//循环从a1中取出数据封装到ArrayList中
 		while(rs.next()){
@@ -131,7 +135,7 @@ public class SQLHelper {
 			throw new RuntimeException(e.getMessage());
 		}finally{
 			
-		}
+	}
 }
 		
 		

@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body style="text-align:center">
-  <h1>我的购物車</h1>
+  <h1>我的购物车</h1>
   <a href="/JavaEE_JspTest/GoHall"> 返回购物大厅 </a>
   <form action="/JavaEE_JspTest/ShoppingServlet?type=updateBook&" method="post">
    <table border="1" style="border-collapse: collapse;margin: auto">
@@ -30,7 +30,7 @@
 	%>
 	   
     <tr>
-        <td colspan="6"><input type="submit" value="更新购物车"  onclick="/JavaEE_JspTest/ShoppingServlet?type=updateBook"></td>
+        <td colspan="6"><input type="submit" value="更新购物车"></td>
     </tr>
     <tr>
         <td colspan="6">购物车的总价:${totalPrice} 元</td>

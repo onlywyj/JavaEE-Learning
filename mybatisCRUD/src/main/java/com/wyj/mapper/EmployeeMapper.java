@@ -20,6 +20,7 @@ public interface EmployeeMapper {
 		public void deleteEmployee(Integer id);
 		//更新员工信息
 		public void updateEmployee(Employee employee);
+		public void updateEmployee2(Employee employee);
 		
 		
 		public List<Employee> getAllEmployeeByNameAndGender(Employee employee);

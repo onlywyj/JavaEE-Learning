@@ -126,5 +126,22 @@ public class MapperDemo {
 		employee.setEmp_department_id(3);
 		employeeService.updateEmployee(employee);
 	}
+	
+	@Test
+	public void updateEmployee2() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+		EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+		//EmployeeService employeeService = new EmployeeMapperServiceImpl();
+		Employee employee = new Employee();
+		employee.setId(15);
+		employee.setEmp_id(9999);
+		//employee.setEmp_name("张三丰");
+		//employee.setEmp_gender("男");
+		//employee.setEmp_password("123456");
+		//employee.setEmp_grade(13);
+		//employee.setEmp_email("zhang@123.com");
+		//employee.setEmp_department_id(3);
+		employeeMapper.updateEmployee2(employee);
+	}
 
 }

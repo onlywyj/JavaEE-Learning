@@ -42,6 +42,33 @@
 		emp_grade=#{emp_grade},emp_email=#{emp_email},emp_department_id=#{emp_department_id}
 		where id=#{id}
 	</update>
+	<update id="updateEmployee2" parameterType="com.wyj.model.Employee">
+		update employee 
+		<set>
+			<if test="emp_id!=null and emp_id!=''">
+				emp_id=#{emp_id},
+			</if>
+			<if test="emp_name!=null and emp_name!=''">
+				emp_name=#{emp_name},
+			</if>
+			<if test="emp_gender!=null and emp_gender!=''">
+				emp_gender=#{emp_gender},
+			</if>
+			<if test="emp_password!=null and emp_password!=''">
+				emp_password=#{emp_password},
+			</if>
+			<if test="emp_grade!=null and emp_grade!=''">
+				emp_grade=#{emp_grade},
+			</if>
+			<if test="emp_email!=null and emp_email!=''">
+				emp_email=#{emp_email},
+			</if>
+			<if test="emp_department_id!=null and emp_department_id!=''">
+				emp_department_id=#{emp_department_id}
+			</if>
+		</set>		
+		where id=#{id}
+	</update>
 	<insert id="insertEmployee"  parameterType="com.wyj.model.Employee">
 		insert into employee(emp_id,emp_name,emp_gender,emp_password,emp_grade,emp_email,emp_department_id)
 		values(#{emp_id},#{emp_name},#{emp_gender},#{emp_password},#{emp_grade},#{emp_email},#{emp_department_id})

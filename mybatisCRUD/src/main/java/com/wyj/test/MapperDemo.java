@@ -1,7 +1,9 @@
 package com.wyj.test;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
@@ -142,6 +144,30 @@ public class MapperDemo {
 		//employee.setEmp_email("zhang@123.com");
 		//employee.setEmp_department_id(3);
 		employeeMapper.updateEmployee2(employee);
+	}
+	
+	@Test
+	public void getAllEmployeeForeach() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+		EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+//		List<Integer> list = new ArrayList<Integer>();
+//		list.add(1);
+//		list.add(2);
+//		list.add(4);
+//		list.add(7);
+//		Integer [] array = new Integer[] {1,2,5,8,13};
+		Map<String,Object> map = new HashMap<String,Object>();
+		Integer [] depid = new Integer[] {1};
+		map.put("depid", depid);
+		Integer [] id = new Integer[] {1,2,3,4,5,6,7,8};
+		map.put("id", id);
+		
+		List<Employee> AllList = employeeMapper.getAllEmployeeForeach(map);
+		Iterator<Employee> it = AllList.iterator();
+		while(it.hasNext()) {
+			Employee emp = it.next();
+			System.out.println(emp);
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.wyj.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.wyj.model.Employee;
 
@@ -26,4 +27,6 @@ public interface EmployeeMapper {
 		public List<Employee> getAllEmployeeByNameAndGender(Employee employee);
 		
 		public List<Employee> getAllEmployeeByNameAndGender2(Employee employee);
+
+		public List<Employee> getAllEmployeeForeach(Map<String,Object> map);
 }

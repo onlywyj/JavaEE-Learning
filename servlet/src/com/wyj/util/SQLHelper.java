@@ -38,11 +38,13 @@ public class SQLHelper {
 			pro = new Properties();
 			file = SQLHelper.class.getClassLoader().getResourceAsStream("db.properties");
 			pro.load(file); 
+			driver = pro.getProperty("driver");
+			Class.forName(driver);
+			System.out.println("数据库驱动加载成功!");
 			url = pro.getProperty("url");
 			user = pro.getProperty("user");
 			password = pro.getProperty("password");
-			driver = pro.getProperty("driver");
-			Class.forName(driver); 
+			System.out.println("数据库成功连接!");  
 			} catch (Exception e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();

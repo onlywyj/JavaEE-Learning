@@ -10,9 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.wyj.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
+@ContextConfiguration("classpath:applicationContext2.xml")
 
-public class Demo {
+public class Demo2 {
 	
 	@Resource
 	private UserService us;

@@ -1,11 +1,18 @@
 package com.maven.test;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.maven.service.UserService;
-import com.maven.service.UserServiceImpl;
+
+//配置Spring中的测试环境
+@RunWith(SpringJUnit4ClassRunner.class) 
+//指定Spring的配置文件路径 
+@ContextConfiguration(locations = {"classpath:applicationContext-dao.xml"})
 
 public class Demo {
 	

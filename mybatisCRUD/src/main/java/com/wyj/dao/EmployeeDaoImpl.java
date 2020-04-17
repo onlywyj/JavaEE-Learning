@@ -20,7 +20,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Employee findEmployeeById(Integer id) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
-		Employee employee = sqlSession.selectOne("com.wyj.model.findEmployeeById", 1001);
+		Employee employee = sqlSession.selectOne("com.wyj.model.findEmployeeById", id);
 		sqlSession.close();
 		return employee;
 	}

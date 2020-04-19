@@ -13,34 +13,35 @@ import com.wyj.model.User;
 import com.wyj.service.UserService;
 import com.wyj.service.UserServiceImpl;
 
-
 public class PageServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-       
+
 	private UserService userService = new UserServiceImpl();
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String currentPage = request.getParameter("currentPage");
 
-        int pageSize = 10;    //每页数量为10
+		int pageSize = 10; // 每页数量为10
 
-        ArrayList<User> recordList = userService.getAllUsersByPage(Integer.parseInt(currentPage), pageSize);
+		ArrayList<User> recordList = userService.getAllUsersByPage(Integer.parseInt(currentPage), pageSize);
 
-        int recordCount = userService.getUserCount();
+		int recordCount = userService.getUserCount();
 
-        PageBean pageBean = new PageBean(Integer.parseInt(currentPage),pageSize,recordCount,recordList);
+		PageBean pageBean = new PageBean(Integer.parseInt(currentPage), pageSize, recordCount, recordList);
 
-        request.setAttribute("pageBean", pageBean);
+		request.setAttribute("pageBean", pageBean);
 
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 
-    }	
+	}
 
 }

@@ -7,30 +7,28 @@ import com.wyj.dao.UserDaoImpl;
 import com.wyj.model.User;
 
 public class UserServiceImpl implements UserService {
-	
-	
-	private UserDao userDao = new UserDaoImpl(); //动态多态性
 
+	private UserDao userDao = new UserDaoImpl(); // 动态多态性
 
 	public boolean checkUser(User user) {
-		
+
 		return userDao.checkUser(user);
 	}
 
 	public ArrayList<User> getAllUsers() {
-		
+
 		return userDao.getAllUsers();
 	}
-	
+
 	@Override
 	public boolean addUser(User user) {
-		
+
 		return userDao.addUser(user);
 	}
-	
+
 	@Override
 	public boolean deleteUser(User user) {
-		
+
 		return userDao.deleteUser(user);
 	}
 
@@ -41,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	public boolean deleteUserBySelected(String para2) {
 		return userDao.deleteUserBySelected(para2);
 	}
-	
+
 	public User findUserById(String id) {
 		return userDao.findUserById(id);
 	}
@@ -50,7 +48,7 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<User> findUserByName(String username) {
 		return userDao.findUserByName(username);
 	}
-	
+
 	public ArrayList<User> getAllUsersByPage(int currentPage, int pageSize) {
 		return userDao.getAllUsersByPage(currentPage, pageSize);
 	}
@@ -59,5 +57,4 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserCount();
 	}
 
-	
 }

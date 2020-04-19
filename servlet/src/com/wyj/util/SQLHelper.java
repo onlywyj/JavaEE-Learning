@@ -14,56 +14,56 @@ import java.util.Properties;
 import com.wyj.model.User;
 
 public class SQLHelper {
-	
+
 	static Connection ct = null;
-	
+
 	static PreparedStatement ps = null;
-	
+
 	static ResultSet rs = null;
-	
-	static String url ="";
-	
+
+	static String url = "";
+
 	static String user = "";
-	
+
 	static String password = "";
-	
+
 	static String driver = "";
-	
+
 	static Properties pro = null;
-	
+
 	static InputStream file = null;
 
-	static{
+	static {
 		try {
 			pro = new Properties();
 			file = SQLHelper.class.getClassLoader().getResourceAsStream("db.properties");
-			pro.load(file); 
+			pro.load(file);
 			driver = pro.getProperty("driver");
 			Class.forName(driver);
 			System.out.println("数据库驱动加载成功!");
 			url = pro.getProperty("url");
 			user = pro.getProperty("user");
 			password = pro.getProperty("password");
-			System.out.println("数据库成功连接!");  
-			} catch (Exception e) {
+			System.out.println("数据库成功连接!");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} finally {
+			try {
+				file.close();
+			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
-				}finally {
-				try {
-					file.close();
-					} catch (IOException e) {
-						// TODO 自动生成的 catch 块
-					e.printStackTrace();
-				}finally {
-					file = null;
-			}	
+			} finally {
+				file = null;
+			}
 		}
 	}
 
-	public static Connection getCt() {	
+	public static Connection getCt() {
 		return ct;
 	}
-	
+
 	public static PreparedStatement getPs() {
 		return ps;
 	}
@@ -73,7 +73,7 @@ public class SQLHelper {
 	}
 
 	public static Connection getConnection() {
-		
+
 		try {
 			ct = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
@@ -82,80 +82,80 @@ public class SQLHelper {
 		}
 		return ct;
 	}
-	
-	public static void executeUpdate(String sql,String[]parameters) {
-		
+
+	public static void executeUpdate(String sql, String[] parameters) {
+
 		try {
 			ct = getConnection();
 			ps = ct.prepareStatement(sql);
-			if(parameters!=null) {
-				for(int i = 0;i<parameters.length;i++) {
-					ps.setString(i+1,parameters[i]);
+			if (parameters != null) {
+				for (int i = 0; i < parameters.length; i++) {
+					ps.setString(i + 1, parameters[i]);
 				}
-			} 
+			}
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();	
-		}finally {
-			close(rs,ps,ct);
+			e.printStackTrace();
+		} finally {
+			close(rs, ps, ct);
 		}
 	}
-	
-	public static ResultSet executeQuery(String sql,String[]parameters) {
-		
+
+	public static ResultSet executeQuery(String sql, String[] parameters) {
+
 		try {
 			ct = getConnection();
 			ps = ct.prepareStatement(sql);
-			if(parameters!=null) {
-				for(int i = 0;i<parameters.length;i++) {
-					ps.setString(i+1,parameters[i]);
+			if (parameters != null) {
+				for (int i = 0; i < parameters.length; i++) {
+					ps.setString(i + 1, parameters[i]);
 				}
 			}
 			rs = ps.executeQuery();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();	
+			e.printStackTrace();
 		}
 		return rs;
 	}
-	
-	//函数的二次封装，避免调用者手动关闭结果集合，根据业务逻辑的需要，model
-	public static ArrayList<User> executeQueryUser(String sql,String[]parameters){
-		
+
+	// 函数的二次封装，避免调用者手动关闭结果集合，根据业务逻辑的需要，model
+	public static ArrayList<User> executeQueryUser(String sql, String[] parameters) {
+
 		ArrayList<User> allUser = new ArrayList<User>();
-		
+
 		try {
 			ct = getConnection();
 			ps = ct.prepareStatement(sql);
-			if(parameters!=null) {
-				for(int i = 0;i<parameters.length;i++) {
-					ps.setString(i+1, parameters[i]);
+			if (parameters != null) {
+				for (int i = 0; i < parameters.length; i++) {
+					ps.setString(i + 1, parameters[i]);
 				}
 			}
 			rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				User user = new User();
 				user.setId(rs.getInt(1));
 				user.setUsername(rs.getString(2));
 				user.setPassword(rs.getString(3));
 				user.setGrade(rs.getInt(4));
-				user.setEmail(rs.getString(5));				
+				user.setEmail(rs.getString(5));
 				allUser.add(user);
 			}
-				 
+
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();	
-		}finally {
-			close(rs,ps,ct);
+			e.printStackTrace();
+		} finally {
+			close(rs, ps, ct);
 		}
 		return allUser;
 	}
-	
-	public static void close(ResultSet rs,Statement ps,Connection ct) {
-		
-		if(rs!=null) {
+
+	public static void close(ResultSet rs, Statement ps, Connection ct) {
+
+		if (rs != null) {
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -163,7 +163,7 @@ public class SQLHelper {
 				e.printStackTrace();
 			}
 		}
-		if(ps!=null) {
+		if (ps != null) {
 			try {
 				ps.close();
 			} catch (SQLException e) {
@@ -171,18 +171,15 @@ public class SQLHelper {
 				e.printStackTrace();
 			}
 		}
-		if(ct!=null) {
-		try {
-			ct.close();
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
+		if (ct != null) {
+			try {
+				ct.close();
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
-	}
-		
+
 	}
 
-	
-	
 }
-

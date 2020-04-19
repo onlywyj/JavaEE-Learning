@@ -3,26 +3,26 @@ package com.wyj.model;
 import java.util.List;
 
 public class PageBean {
-	
-    //指定或者页面参数
 
-    private int currentPage;//当前页
+	// 指定或者页面参数
 
-    private int pageSize;   //每页显示多少条
+	private int currentPage;// 当前页
 
-    //查询数据库
+	private int pageSize; // 每页显示多少条
 
-    private int recordCount;//数据库一共有多少条
+	// 查询数据库
 
-    private List recordList;//本页显示的数据列表
+	private int recordCount;// 数据库一共有多少条
 
-    //计算
+	private List recordList;// 本页显示的数据列表
 
-    private int pageCount;  //计算后得到的数值，总页数
+	// 计算
 
-    private int beginPageIndex;//页面列表的开始索引（包括）
+	private int pageCount; // 计算后得到的数值，总页数
 
-    private int endPageIndex;  //页面列表的结束索引（包括）
+	private int beginPageIndex;// 页面列表的开始索引（包括）
+
+	private int endPageIndex; // 页面列表的结束索引（包括）
 
 	public int getCurrentPage() {
 		return currentPage;
@@ -82,62 +82,60 @@ public class PageBean {
 
 	public PageBean() {
 	}
-	
-    public PageBean(int currentPage, int pageSize, int recordCount, List recordList){
 
-    	this.currentPage=currentPage;
+	public PageBean(int currentPage, int pageSize, int recordCount, List recordList) {
 
-        this.pageSize=pageSize;
+		this.currentPage = currentPage;
 
-        this.recordCount=recordCount;
+		this.pageSize = pageSize;
 
-        this.recordList=recordList;
+		this.recordCount = recordCount;
 
-        //计算总页码
+		this.recordList = recordList;
 
-         pageCount=(recordCount+pageSize-1)/pageSize;       
+		// 计算总页码
 
-         //计算beginPageIndex和endPageIndex
+		pageCount = (recordCount + pageSize - 1) / pageSize;
 
-         //总页数不大于10，则全部显示
+		// 计算beginPageIndex和endPageIndex
 
-         if(pageCount<=10){
+		// 总页数不大于10，则全部显示
 
-              beginPageIndex=1;
+		if (pageCount <= 10) {
 
-              endPageIndex=pageCount;
+			beginPageIndex = 1;
 
-          }else{
+			endPageIndex = pageCount;
 
-          //总页数大于10，则显示当前页附近的10页
+		} else {
 
-              beginPageIndex=currentPage-4;
+			// 总页数大于10，则显示当前页附近的10页
 
-              endPageIndex=currentPage+5;
+			beginPageIndex = currentPage - 4;
 
-            //当  前面的页码数量不足4个时，则显示前10个页码
+			endPageIndex = currentPage + 5;
 
-              if(beginPageIndex<1){
+			// 当 前面的页码数量不足4个时，则显示前10个页码
 
-                  beginPageIndex=1;
+			if (beginPageIndex < 1) {
 
-                  endPageIndex=10;
-                  }
+				beginPageIndex = 1;
 
-                //当  后面的页码数量不足5个时，则显示后10个页码
+				endPageIndex = 10;
+			}
 
-              if(endPageIndex>pageCount){
+			// 当 后面的页码数量不足5个时，则显示后10个页码
 
-                  endPageIndex=pageCount;
+			if (endPageIndex > pageCount) {
 
-                  beginPageIndex=pageCount-10+1;
+				endPageIndex = pageCount;
 
-                  }
+				beginPageIndex = pageCount - 10 + 1;
 
-          }
+			}
 
-      }
+		}
+
+	}
 
 }
-    
-

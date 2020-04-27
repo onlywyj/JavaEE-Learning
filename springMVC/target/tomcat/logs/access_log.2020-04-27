@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:21:48 +0800] "GET /springMVC/login HTTP/1.1" 405 1045 http-bio-8080-exec-1 35
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:21:58 +0800] "GET /springMVC/hello.jsp HTTP/1.1" 404 989 http-bio-8080-exec-2 1
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:22:07 +0800] "GET /springMVC/hello HTTP/1.1" 404 981 http-bio-8080-exec-3 5
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:25:21 +0800] "GET /springMVC/hello HTTP/1.1" 404 981 http-bio-8080-exec-1 41
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:25:24 +0800] "GET /springMVC/hello.jsp HTTP/1.1" 404 989 http-bio-8080-exec-2 1
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:25:32 +0800] "GET /springMVC/login HTTP/1.1" 405 1045 http-bio-8080-exec-3 2
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:27:40 +0800] "GET /springMVC/login HTTP/1.1" 200 761 http-bio-8080-exec-1 99
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:10:27:49 +0800] "POST /springMVC/checkUser HTTP/1.1" 200 333 http-bio-8080-exec-2 20

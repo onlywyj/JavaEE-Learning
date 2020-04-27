@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,11 +55,10 @@
 	    });
 	    
 	   //取出登录失败后传回来的参数error并与yes比较
-	    var errori ='<%=request.getParameter("error")%>
-	';
-	if (errori == 'yes') {
-		alert("登录失败!请检查用户名和密码!");
-	}
+	    var errori ='<%=request.getParameter("error")%>';
+		if (errori == 'yes') {
+			alert("登录失败!请检查用户名和密码!");
+		}
 </script>
 
 </head>

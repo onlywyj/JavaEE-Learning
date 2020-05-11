@@ -32,6 +32,24 @@ public class UserController {
 		model.addAttribute("password", password);
 		//return mav;
 		return "hello";
+	}
+	
+	//单个参数
+	@RequestMapping(value="/test")
+	public String test(HttpServletRequest request) {
 		
+		String id = request.getParameter("id");
+		System.out.println(id);
+		
+		return "success";
+	}
+	
+	//多个参数
+	@RequestMapping(value="/test2")
+	public String test2(HttpServletRequest request,Integer id,String name) {
+		
+		System.out.println(id+" "+name);
+		
+		return "success";
 	}
 }

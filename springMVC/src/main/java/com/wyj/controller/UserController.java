@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wyj.model.User;
+
 @Controller
 public class UserController {
 	
 	
-	@RequestMapping(value="/login",name="用户登录",method=RequestMethod.GET)
-	public String login() {
-		System.out.println("login...");
-		return "login";
-	}
+//	@RequestMapping(value="/login",name="用户登录",method=RequestMethod.GET)
+//	public String login() {
+//		System.out.println("login...");
+//		return "login";
+//	}
 
 	@RequestMapping("/checkUser")
 	public String checkUser(HttpServletRequest request,HttpServletResponse response,Model model) {
@@ -51,5 +53,21 @@ public class UserController {
 		System.out.println(id+" "+name);
 		
 		return "success";
+		
+	}
+	
+	
+	@RequestMapping(value="tologin")
+	public String tlogin() {
+		return "login";	
+	}
+	
+	
+	@RequestMapping(value="login")
+	public String login2(User user, Model model){
+		model.addAttribute("username", user.getUsername());
+		model.addAttribute("password", user.getPassword());
+		System.out.println(user.getUsername()+" "+user.getPassword());
+		return "hello";
 	}
 }

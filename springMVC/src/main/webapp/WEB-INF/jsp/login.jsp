@@ -27,7 +27,7 @@
 			<p>
 			<center>
 				<input type="submit" value="login" />
-				<input type="reset" value="reser" />
+				<input type="reset" value="reset" />
 			</center>
 			</p>
 		</form>

@@ -6,8 +6,8 @@
 
 * 设置用户名：`$ git config --global user.name <用户名>`
 * 设置邮箱：`$ git config --global user.email <你的邮箱>` 
-* 添加远程仓库：`$ git remote add <name> <url>`（name的名字可以随意，url可以为http网址也可以为SSH地址，使用SSH需要生成秘钥）
 * 初始化本地仓库：`$ git init`
+* 添加远程仓库：`$ git remote add <name> <url>`（name的名字可以随意，url可以为http网址也可以为SSH地址，使用SSH需要生成秘钥）
 * 删除本地仓库 (不可恢复)：`$ rm -rf .git`
 * 检查本地仓库文件状态：`$ git status`
 * 添加文件：`$ git add -A (all)` ，	`$ git add -u (modified&delete)`， 	`$ git add . (new&modeified)`

@@ -25,7 +25,6 @@
 	function del() {
 		return window.confirm("真的要删除该用户吗？此操作不可恢复!");
 	}
-
 	//全选和批量删除
 	function select_all() {
 		var mycheck = document.getElementById("all");
@@ -40,7 +39,6 @@
 			}
 		}
 	}
-
 	function deleteBySelected() {
 		var deleteId = [];
 		var names = document.getElementsByName("myselect");
@@ -56,7 +54,6 @@
 				}
 			}
 		}
-
 		if (flag) {
 			for (var i = 0; i < names.length; i++) {
 				if (names[i].checked) {
@@ -70,7 +67,6 @@
 			return false;
 		}
 	}
-
 	//安全退出提示
 	function logout() {
 		return window.confirm("确认退出？");

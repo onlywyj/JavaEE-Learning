@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 给model包起别名   package：为某个包下的所有类批量起别名  name：指定包名 以及下面所有的后代包的每一个类都起一个默认别名（类名小写）-->
+	<typeAliases>
+		<package name="com.wyj.model" />
+	</typeAliases>
+	<!-- 搭建数据库环境交给spring执行 -->
+	<!-- 映射配置 -->
+	<mappers>
+		<package name="com.wyj.mapper" />
+	</mappers>
+</configuration>
+

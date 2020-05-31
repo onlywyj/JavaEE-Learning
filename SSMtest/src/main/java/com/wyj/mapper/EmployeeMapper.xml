@@ -13,8 +13,7 @@
   </resultMap>
 
 	<!-- 此处sql语句为自行添加，逆向工程没有生成 -->
-	<select id="checkUser" parameterType="String"
-		resultType="com.wyj.model.Employee">
+	<select id="checkUser" parameterType="String" resultType="com.wyj.model.Employee">
 		select * from employee where emp_name=#{0} and emp_password=#{1}
 	</select>
 	<!-- 此处sql语句为自行添加，逆向工程没有生成 -->
@@ -22,16 +21,30 @@
 		select count(*) from employee
 	</select>
 	<!-- 此处sql语句为自行添加，逆向工程没有生成 -->
-	<select id="getAllEmployeeByPage" parameterType="Integer"
-		resultType="employee"> 
+	<select id="getAllEmployeeByPage" parameterType="Integer" resultMap="employee"> 
 		select * from employee e LEFT JOIN department d on e.emp_department_id = d.department_id limit #{0},#{1}
 	</select>
 	<!-- 此处sql语句为自行添加，逆向工程没有生成 -->
-	<select id="getAllEmployee"
-		parameterType="com.wyj.model.EmployeeExample" resultType="employee">
+	<select id="getAllEmployee" parameterType="com.wyj.model.EmployeeExample" resultMap="employee">
 		<!-- 使用的是左外连接，不要使用子查询 -->
-		select * from employee e LEFT JOIN department d on e.emp_department_id = d.department_id limit 0,10
-	</select> 
+		select * from employee e  LEFT JOIN  department d on e.emp_department_id = d.department_id limit 0,10
+	</select>
+	
+	<resultMap id="employee" type="com.wyj.model.Employee">
+    <id column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_gender" jdbcType="CHAR" property="empGender" />
+    <result column="emp_password" jdbcType="VARCHAR" property="empPassword" />
+    <result column="emp_grade" jdbcType="VARCHAR" property="empGrade" />
+    <result column="emp_email" jdbcType="VARCHAR" property="empEmail" />
+    <result column="emp_department_id" jdbcType="INTEGER" property="empDepartmentId" />
+    <association property="department" javaType="com.wyj.model.Department">
+    	<result column="department_id" property="departmentId"/>
+    	<result column="department_name" property="departmentName"/>
+    	<result column="department_leader" property="departmentLeader"/>
+    	<result column="department_address" property="departmentAddress"/>
+    </association>
+  </resultMap> 
   
   
   <sql id="Example_Where_Clause">

@@ -2,6 +2,8 @@ package com.wyj.model;
 
 import java.io.Serializable;
 
+import com.wyj.model.Department;
+
 public class Employee implements Serializable {
     private Integer id;
 
@@ -18,6 +20,8 @@ public class Employee implements Serializable {
     private String empEmail;
 
     private Integer empDepartmentId;
+    
+    private Department department;
 
     private static final long serialVersionUID = 1L;
 
@@ -84,4 +88,14 @@ public class Employee implements Serializable {
     public void setEmpDepartmentId(Integer empDepartmentId) {
         this.empDepartmentId = empDepartmentId;
     }
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+    
+    
 }

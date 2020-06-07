@@ -26,11 +26,14 @@
 | JsonAndAjax        | Json数据交互和Ajax数据解析示例                               |
 | interceptor        | 拦截器，登录拦截                                             |
 | SSMtest            | SSM框架整合的简单示例                                        |
+| uploadAndDown      | SpringMVC文件上传下载                                        |
 
 #### 补充
 
 | 名称                 | 备注                        |
-| -------------------- | --------------------------- |
+| -------------------- | :-------------------------- |
 | JavaEE_JspTest       | Jsp综合编程，简单的购物系统 |
 | spring_data_jpa_test | 通过SpringDataJPA操作数据库 |
+| verificationCode     | Jsp页面生成验证码           |
+| ...                  | ...                         |
 

@@ -113,11 +113,11 @@
 					<thead>
 						<tr class="info">
 							<th><input type="checkbox" id="all" onclick="select_all()" />全选</th>
-							<th>id</th>
-							<th>用户名</th>
-							<th>密码</th>
-							<th>等级</th>
-							<th>邮箱</th>
+							<th>序号</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>出生日期</th>
+							<th>身份证号</th>
 							<th>操作</th>
 						</tr>
 					</thead>
